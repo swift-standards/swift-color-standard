@@ -1,7 +1,7 @@
 // Theme.swift
 // Color scheme / appearance mode.
 
-public import Dimension
+public import Dimension_Primitives
 
 /// Color scheme / appearance mode.
 ///

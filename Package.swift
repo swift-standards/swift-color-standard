@@ -17,16 +17,16 @@ let package = Package(
         .library(name: "Theme", targets: ["Theme"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-standards/swift-standards", from: "0.1.0"),
-        .package(url: "https://github.com/swift-standards/swift-iec-61966", from: "0.1.0"),
-        .package(url: "https://github.com/swift-standards/swift-iso-9899", from: "0.2.2"),
+        .package(path: "../../swift-primitives/swift-dimension-primitives"),
+        .package(path: "../swift-iec-61966"),
+        .package(path: "../swift-iso-9899"),
     ],
     targets: [
         // MARK: - Theme
         .target(
             name: "Theme",
             dependencies: [
-                .product(name: "Dimension", package: "swift-standards"),
+                .product(name: "Dimension Primitives", package: "swift-dimension-primitives"),
             ]
         ),
 

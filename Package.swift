@@ -20,6 +20,7 @@ let package = Package(
         .package(path: "../../swift-primitives/swift-dimension-primitives"),
         .package(path: "../swift-iec-61966"),
         .package(path: "../swift-iso-9899"),
+        .package(path: "../swift-ecma-48"),
     ],
     targets: [
         // MARK: - Theme
@@ -37,6 +38,7 @@ let package = Package(
                 "Theme",
                 .product(name: "IEC 61966", package: "swift-iec-61966"),
                 .product(name: "ISO 9899", package: "swift-iso-9899"),
+                .product(name: "ECMA 48", package: "swift-ecma-48"),
             ]
         ),
 

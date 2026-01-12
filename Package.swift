@@ -17,10 +17,10 @@ let package = Package(
         .library(name: "Theme", targets: ["Theme"]),
     ],
     dependencies: [
-        .package(path: "../../swift-primitives/swift-dimension-primitives"),
-        .package(path: "../swift-iec-61966"),
-        .package(path: "../swift-iso-9899"),
-        .package(path: "../swift-ecma-48"),
+        .package(url: "https://github.com/swift-primitives/swift-dimension-primitives.git", from: "0.0.1"),
+        .package(url: "https://github.com/swift-standards/swift-iec-61966.git", from: "0.0.1"),
+        .package(url: "https://github.com/swift-standards/swift-iso-9899.git", from: "0.0.1"),
+        .package(url: "https://github.com/swift-standards/swift-ecma-48.git", from: "0.0.1"),
     ],
     targets: [
         // MARK: - Theme

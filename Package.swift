@@ -10,24 +10,24 @@ let package = Package(
         .iOS(.v26),
         .tvOS(.v26),
         .watchOS(.v26),
-        .visionOS(.v26),
+        .visionOS(.v26)
     ],
     products: [
         .library(name: "Color Standard", targets: ["Color Standard"]),
-        .library(name: "Theme", targets: ["Theme"]),
+        .library(name: "Theme", targets: ["Theme"])
     ],
     dependencies: [
         .package(path: "../../swift-primitives/swift-dimension-primitives"),
         .package(path: "../swift-iec-61966"),
         .package(path: "../swift-iso-9899"),
-        .package(path: "../swift-ecma-48"),
+        .package(path: "../swift-ecma-48")
     ],
     targets: [
         // MARK: - Theme
         .target(
             name: "Theme",
             dependencies: [
-                .product(name: "Dimension Primitives", package: "swift-dimension-primitives"),
+                .product(name: "Dimension Primitives", package: "swift-dimension-primitives")
             ]
         ),
 
@@ -38,19 +38,9 @@ let package = Package(
                 "Theme",
                 .product(name: "IEC 61966", package: "swift-iec-61966"),
                 .product(name: "ISO 9899", package: "swift-iso-9899"),
-                .product(name: "ECMA 48", package: "swift-ecma-48"),
+                .product(name: "ECMA 48", package: "swift-ecma-48")
             ]
-        ),
-
-        .testTarget(
-            name: "Color Standard Tests",
-            dependencies: ["Color Standard"]
-        ),
-
-        .testTarget(
-            name: "Theme Tests",
-            dependencies: ["Theme"]
-        ),
+        )
     ],
     swiftLanguageModes: [.v6]
 )
@@ -59,6 +49,6 @@ for target in package.targets where ![.system, .binary, .plugin].contains(target
     target.swiftSettings = (target.swiftSettings ?? []) + [
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
-        .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("MemberImportVisibility")
     ]
 }

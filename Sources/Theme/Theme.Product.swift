@@ -30,7 +30,7 @@ extension Theme {
   /// ## Algebra
   ///
   /// - `Theme.Product<V>` ≅ `V²` (binary homogeneous product)
-  /// - `product[theme]` is projection `π_{theme.caseIndex}`
+  /// - `product[theme]` is projection `π_{theme.ordinal}`
   /// - `map` is the functorial action on morphisms
   public struct Product<Value> {
     /// Value for light mode (index 0).
@@ -60,21 +60,21 @@ extension Theme {
 extension Theme.Product {
   /// Accesses the value for a given theme.
   ///
-  /// Uses `theme.caseIndex` to select the appropriate value.
+  /// Uses `theme.ordinal` to select the appropriate value.
   @inlinable
   public subscript(theme: Theme) -> Value {
     get {
-      switch theme.caseIndex {
-      case 0: return light
-      case 1: return dark
-      default: fatalError("Invalid theme index: \(theme.caseIndex)")
+      switch theme {
+      case .light: return light
+      case .dark: return dark
+      default: fatalError("Invalid theme ordinal: \(theme.ordinal)")
       }
     }
     set {
-      switch theme.caseIndex {
-      case 0: light = newValue
-      case 1: dark = newValue
-      default: fatalError("Invalid theme index: \(theme.caseIndex)")
+      switch theme {
+      case .light: light = newValue
+      case .dark: dark = newValue
+      default: fatalError("Invalid theme ordinal: \(theme.ordinal)")
       }
     }
   }
@@ -177,7 +177,7 @@ extension Theme.Product {
   /// - Precondition: Array must have exactly 2 elements.
   @inlinable
   public init(values: [Value]) {
-    precondition(values.count == Theme.caseCount, "Array must have \(Theme.caseCount) elements")
+    precondition(values.count == 2, "Array must have exactly 2 elements")
     self.light = values[0]
     self.dark = values[1]
   }

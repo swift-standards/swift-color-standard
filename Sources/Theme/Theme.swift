@@ -25,40 +25,37 @@ public import Dimension_Primitives
 /// - `Theme` is a finite set with 2 elements: `{light, dark}`
 /// - `Theme.Product<V>` is the exponential object `V^Theme ≅ V × V`
 /// - Selection `product[theme]` is projection `π_i`
-public struct Theme: Hashable {
-  /// Index of this theme case (0 = light, 1 = dark).
-  public let caseIndex: Int
+public struct Theme: Hashable, Sendable {
+  /// Ordinal position of this theme case (0 = light, 1 = dark).
+  public let ordinal: Ordinal
 
-  /// Creates a theme from its case index.
-  ///
-  /// - Precondition: `caseIndex` must be 0 or 1.
+  /// Creates a theme from its ordinal without bounds checking.
   @inlinable
-  public init(caseIndex: Int) {
-    precondition(caseIndex >= 0 && caseIndex < Self.caseCount, "Invalid theme index")
-    self.caseIndex = caseIndex
+  public init(__unchecked: Void, ordinal: Ordinal) {
+    self.ordinal = ordinal
   }
 
   /// Light appearance mode.
-  public static let light = Theme(caseIndex: 0)
+  public static let light = Theme(__unchecked: (), ordinal: 0)
 
   /// Dark appearance mode.
-  public static let dark = Theme(caseIndex: 1)
+  public static let dark = Theme(__unchecked: (), ordinal: 1)
 }
 
 // MARK: - Enumerable Conformance
 
-extension Theme: Enumerable {
+extension Theme: Finite.Enumerable {
   /// Number of theme cases (2: light and dark).
-  public static let caseCount = 2
+  public static let count: Cardinal = 2
 }
 
 // MARK: - CustomStringConvertible
 
 extension Theme: CustomStringConvertible {
   public var description: String {
-    switch caseIndex {
-    case 0: return "light"
-    case 1: return "dark"
+    switch self {
+    case .light: return "light"
+    case .dark: return "dark"
     default: return "unknown"
     }
   }

@@ -1,7 +1,7 @@
 // Theme.Product.swift
 // Homogeneous product indexed by Theme cases.
 
-import Dimension_Primitives
+public import Dimension_Primitives
 
 extension Theme {
   /// Homogeneous product indexed by theme cases.

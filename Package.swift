@@ -40,7 +40,19 @@ let package = Package(
                 .product(name: "ISO 9899", package: "swift-iso-9899"),
                 .product(name: "ECMA 48", package: "swift-ecma-48")
             ]
-        )
+        ),
+        .testTarget(
+            name: "Color Standard Tests",
+            dependencies: [
+                "Color Standard",
+            ]
+        ),
+        .testTarget(
+            name: "Theme Tests",
+            dependencies: [
+                "Color Standard",
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
@@ -51,6 +63,7 @@ for target in package.targets where ![.system, .binary, .plugin, .macro].contain
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
+        .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
         .enableExperimentalFeature("Lifetimes"),
         .enableExperimentalFeature("SuppressedAssociatedTypes"),
         .enableExperimentalFeature("SuppressedAssociatedTypesWithDefaults"),

@@ -85,10 +85,10 @@ extension Theme.Product {
 extension Theme.Product {
   /// Transforms both values using the given closure.
   @inlinable
-  public static func map<NewValue>(
+  public static func map<NewValue, E: Swift.Error>(
     _ product: Theme.Product<Value>,
-    transform: (Value) throws -> NewValue
-  ) rethrows -> Theme.Product<NewValue> {
+    transform: (Value) throws(E) -> NewValue
+  ) throws(E) -> Theme.Product<NewValue> {
     Theme.Product<NewValue>(
       light: try transform(product.light),
       dark: try transform(product.dark)
@@ -97,10 +97,10 @@ extension Theme.Product {
 
   /// Transforms values with access to the theme.
   @inlinable
-  public static func mapWithTheme<NewValue>(
+  public static func mapWithTheme<NewValue, E: Swift.Error>(
     _ product: Theme.Product<Value>,
-    transform: (Theme, Value) throws -> NewValue
-  ) rethrows -> Theme.Product<NewValue> {
+    transform: (Theme, Value) throws(E) -> NewValue
+  ) throws(E) -> Theme.Product<NewValue> {
     Theme.Product<NewValue>(
       light: try transform(.light, product.light),
       dark: try transform(.dark, product.dark)
@@ -113,17 +113,17 @@ extension Theme.Product {
 extension Theme.Product {
   /// Transforms both values using the given closure.
   @inlinable
-  public func map<NewValue>(
-    _ transform: (Value) throws -> NewValue
-  ) rethrows -> Theme.Product<NewValue> {
+  public func map<NewValue, E: Swift.Error>(
+    _ transform: (Value) throws(E) -> NewValue
+  ) throws(E) -> Theme.Product<NewValue> {
     try Self.map(self, transform: transform)
   }
 
   /// Transforms values with access to the theme.
   @inlinable
-  public func mapWithTheme<NewValue>(
-    _ transform: (Theme, Value) throws -> NewValue
-  ) rethrows -> Theme.Product<NewValue> {
+  public func mapWithTheme<NewValue, E: Swift.Error>(
+    _ transform: (Theme, Value) throws(E) -> NewValue
+  ) throws(E) -> Theme.Product<NewValue> {
     try Self.mapWithTheme(self, transform: transform)
   }
 }
@@ -145,11 +145,11 @@ extension Theme.Product {
 
   /// Combines two products using a combining function.
   @inlinable
-  public static func zipWith<A, B>(
+  public static func zipWith<A, B, E: Swift.Error>(
     _ a: Theme.Product<A>,
     _ b: Theme.Product<B>,
-    combine: (A, B) throws -> Value
-  ) rethrows -> Theme.Product<Value> {
+    combine: (A, B) throws(E) -> Value
+  ) throws(E) -> Theme.Product<Value> {
     Theme.Product(
       light: try combine(a.light, b.light),
       dark: try combine(a.dark, b.dark)

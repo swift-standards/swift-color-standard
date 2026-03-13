@@ -18,9 +18,9 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../../swift-primitives/swift-dimension-primitives"),
-        .package(path: "../swift-iec-61966"),
-        .package(path: "../swift-iso-9899"),
-        .package(path: "../swift-ecma-48")
+        .package(path: "../../swift-iec/swift-iec-61966"),
+        .package(path: "../../swift-iso/swift-iso-9899"),
+        .package(path: "../../swift-ecma/swift-ecma-48")
     ],
     targets: [
         // MARK: - Theme

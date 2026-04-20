@@ -13,8 +13,8 @@ struct LABConversionTests {
 
   // MARK: - LAB Round-Trip Tests
 
-  @Test("LAB black round-trip")
-  func labBlackRoundTrip() {
+  @Test
+  func `LAB black round-trip`() {
     let original = LAB.black
     let color = original.canonical()
     let roundTrip = LAB(color)
@@ -24,8 +24,8 @@ struct LABConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.01)
   }
 
-  @Test("LAB white round-trip")
-  func labWhiteRoundTrip() {
+  @Test
+  func `LAB white round-trip`() {
     let original = LAB.white
     let color = original.canonical()
     let roundTrip = LAB(color)
@@ -35,8 +35,8 @@ struct LABConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.01)
   }
 
-  @Test("LAB arbitrary color round-trip")
-  func labArbitraryRoundTrip() {
+  @Test
+  func `LAB arbitrary color round-trip`() {
     // A color in the sRGB gamut
     let original = LAB(l: 50, a: 20, b: -30)
     let color = original.canonical()
@@ -49,8 +49,8 @@ struct LABConversionTests {
 
   // MARK: - LAB to sRGB Known Values
 
-  @Test("LAB to sRGB - black")
-  func labToSRGBBlack() {
+  @Test
+  func `LAB to sRGB - black`() {
     let lab = LAB(l: 0, a: 0, b: 0)
     let srgb = lab.converted(to: sRGB.self)
 
@@ -59,8 +59,8 @@ struct LABConversionTests {
     #expect(abs(srgb.b - 0) < 0.01)
   }
 
-  @Test("LAB to sRGB - white")
-  func labToSRGBWhite() {
+  @Test
+  func `LAB to sRGB - white`() {
     let lab = LAB(l: 100, a: 0, b: 0)
     let srgb = lab.converted(to: sRGB.self)
 
@@ -69,8 +69,8 @@ struct LABConversionTests {
     #expect(abs(srgb.b - 1) < 0.01)
   }
 
-  @Test("LAB to sRGB - mid gray")
-  func labToSRGBMidGray() {
+  @Test
+  func `LAB to sRGB - mid gray`() {
     // L*=50 should be approximately mid-gray (but not exactly 0.5 in sRGB due to perceptual uniformity)
     let lab = LAB(l: 50, a: 0, b: 0)
     let srgb = lab.converted(to: sRGB.self)
@@ -84,8 +84,8 @@ struct LABConversionTests {
 
   // MARK: - sRGB to LAB Known Values
 
-  @Test("sRGB to LAB - red")
-  func srgbToLABRed() {
+  @Test
+  func `sRGB to LAB - red`() {
     let srgb = sRGB.red
     let lab = srgb.converted(to: LAB.self)
 
@@ -95,8 +95,8 @@ struct LABConversionTests {
     #expect(lab.b > 50)  // Positive b* (yellow-ish for red)
   }
 
-  @Test("sRGB to LAB - green")
-  func srgbToLABGreen() {
+  @Test
+  func `sRGB to LAB - green`() {
     let srgb = sRGB.green
     let lab = srgb.converted(to: LAB.self)
 
@@ -106,8 +106,8 @@ struct LABConversionTests {
     #expect(lab.b > 50)  // Positive b* (yellow-ish)
   }
 
-  @Test("sRGB to LAB - blue")
-  func srgbToLABBlue() {
+  @Test
+  func `sRGB to LAB - blue`() {
     let srgb = sRGB.blue
     let lab = srgb.converted(to: LAB.self)
 
@@ -119,8 +119,8 @@ struct LABConversionTests {
 
   // MARK: - LCH Round-Trip Tests
 
-  @Test("LCH round-trip")
-  func lchRoundTrip() {
+  @Test
+  func `LCH round-trip`() {
     let original = LCH(l: 60, c: 50, h: 120)
     let color = original.canonical()
     let roundTrip = LCH(color)
@@ -134,8 +134,8 @@ struct LABConversionTests {
 
   // MARK: - LAB <-> LCH Conversion
 
-  @Test("LAB to LCH conversion")
-  func labToLCH() {
+  @Test
+  func `LAB to LCH conversion`() {
     let lab = LAB(l: 50, a: 25, b: 25)
     let lch = LCH(lab)
 
@@ -146,8 +146,8 @@ struct LABConversionTests {
     #expect(abs(lch.h - 45) < 0.1)
   }
 
-  @Test("LCH to LAB conversion")
-  func lchToLAB() {
+  @Test
+  func `LCH to LAB conversion`() {
     let lch = LCH(l: 50, c: 50, h: 90)
     let lab = lch.lab
 
@@ -160,8 +160,8 @@ struct LABConversionTests {
 
   // MARK: - Protocol Conformance
 
-  @Test("LAB converted(to:) convenience method")
-  func labConvertedToMethod() {
+  @Test
+  func `LAB converted(to:) convenience method`() {
     let lab = LAB(l: 50, a: 20, b: -30)
     let roundTrip = lab.converted(to: LAB.self)
 
@@ -170,8 +170,8 @@ struct LABConversionTests {
     #expect(abs(roundTrip.b - lab.b) < 0.01)
   }
 
-  @Test("LCH converted(to:) convenience method")
-  func lchConvertedToMethod() {
+  @Test
+  func `LCH converted(to:) convenience method`() {
     let lch = LCH(l: 60, c: 40, h: 180)
     let roundTrip = lch.converted(to: LCH.self)
 
@@ -183,8 +183,8 @@ struct LABConversionTests {
 
   // MARK: - Lightness Component
 
-  @Test("LAB Lightness typed component")
-  func labLightnessComponent() throws {
+  @Test
+  func `LAB Lightness typed component`() throws {
     let lightness = try LAB.Lightness(50)
     #expect(lightness.value == 50)
 

@@ -13,8 +13,8 @@ struct OklabConversionTests {
 
   // MARK: - Oklab Round-Trip Tests
 
-  @Test("Oklab black round-trip")
-  func oklabBlackRoundTrip() {
+  @Test
+  func `Oklab black round-trip`() {
     let original = Oklab.black
     let color = original.canonical()
     let roundTrip = Oklab(color)
@@ -24,8 +24,8 @@ struct OklabConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.001)
   }
 
-  @Test("Oklab white round-trip")
-  func oklabWhiteRoundTrip() {
+  @Test
+  func `Oklab white round-trip`() {
     let original = Oklab.white
     let color = original.canonical()
     let roundTrip = Oklab(color)
@@ -35,8 +35,8 @@ struct OklabConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.001)
   }
 
-  @Test("Oklab arbitrary color round-trip")
-  func oklabArbitraryRoundTrip() {
+  @Test
+  func `Oklab arbitrary color round-trip`() {
     let original = Oklab(l: 0.6, a: 0.1, b: -0.1)
     let color = original.canonical()
     let roundTrip = Oklab(color)
@@ -48,8 +48,8 @@ struct OklabConversionTests {
 
   // MARK: - Oklab to sRGB Known Values
 
-  @Test("Oklab to sRGB - black")
-  func oklabToSRGBBlack() {
+  @Test
+  func `Oklab to sRGB - black`() {
     let oklab = Oklab(l: 0, a: 0, b: 0)
     let srgb = oklab.converted(to: sRGB.self)
 
@@ -58,8 +58,8 @@ struct OklabConversionTests {
     #expect(abs(srgb.b - 0) < 0.01)
   }
 
-  @Test("Oklab to sRGB - white")
-  func oklabToSRGBWhite() {
+  @Test
+  func `Oklab to sRGB - white`() {
     let oklab = Oklab(l: 1, a: 0, b: 0)
     let srgb = oklab.converted(to: sRGB.self)
 
@@ -68,8 +68,8 @@ struct OklabConversionTests {
     #expect(abs(srgb.b - 1) < 0.01)
   }
 
-  @Test("Oklab to sRGB - mid gray")
-  func oklabToSRGBMidGray() {
+  @Test
+  func `Oklab to sRGB - mid gray`() {
     // L=0.5 in Oklab is perceptually mid-gray
     let oklab = Oklab(l: 0.5, a: 0, b: 0)
     let srgb = oklab.converted(to: sRGB.self)
@@ -83,8 +83,8 @@ struct OklabConversionTests {
 
   // MARK: - sRGB to Oklab Known Values
 
-  @Test("sRGB to Oklab - red")
-  func srgbToOklabRed() {
+  @Test
+  func `sRGB to Oklab - red`() {
     let srgb = sRGB.red
     let oklab = srgb.converted(to: Oklab.self)
 
@@ -94,8 +94,8 @@ struct OklabConversionTests {
     #expect(oklab.b > 0.1)  // Positive b (yellow-ish for red)
   }
 
-  @Test("sRGB to Oklab - green")
-  func srgbToOklabGreen() {
+  @Test
+  func `sRGB to Oklab - green`() {
     let srgb = sRGB.green
     let oklab = srgb.converted(to: Oklab.self)
 
@@ -105,8 +105,8 @@ struct OklabConversionTests {
     #expect(oklab.b > 0.1)  // Positive b (yellow-ish)
   }
 
-  @Test("sRGB to Oklab - blue")
-  func srgbToOklabBlue() {
+  @Test
+  func `sRGB to Oklab - blue`() {
     let srgb = sRGB.blue
     let oklab = srgb.converted(to: Oklab.self)
 
@@ -117,8 +117,8 @@ struct OklabConversionTests {
 
   // MARK: - Oklch Round-Trip Tests
 
-  @Test("Oklch round-trip")
-  func oklchRoundTrip() {
+  @Test
+  func `Oklch round-trip`() {
     let original = Oklch(l: 0.7, c: 0.15, h: 120)
     let color = original.canonical()
     let roundTrip = Oklch(color)
@@ -132,8 +132,8 @@ struct OklabConversionTests {
 
   // MARK: - Oklab <-> Oklch Conversion
 
-  @Test("Oklab to Oklch conversion")
-  func oklabToOklch() {
+  @Test
+  func `Oklab to Oklch conversion`() {
     let oklab = Oklab(l: 0.5, a: 0.1, b: 0.1)
     let oklch = Oklch(oklab)
 
@@ -144,8 +144,8 @@ struct OklabConversionTests {
     #expect(abs(oklch.h - 45) < 0.1)
   }
 
-  @Test("Oklch to Oklab conversion")
-  func oklchToOklab() {
+  @Test
+  func `Oklch to Oklab conversion`() {
     let oklch = Oklch(l: 0.5, c: 0.2, h: 90)
     let oklab = oklch.oklab
 
@@ -158,8 +158,8 @@ struct OklabConversionTests {
 
   // MARK: - Cross-Format Conversion
 
-  @Test("sRGB -> Oklab -> sRGB round-trip")
-  func srgbOklabRoundTrip() {
+  @Test
+  func `sRGB -> Oklab -> sRGB round-trip`() {
     let original = sRGB(r: 0.5, g: 0.3, b: 0.8)
     let oklab = original.converted(to: Oklab.self)
     let roundTrip = oklab.converted(to: sRGB.self)
@@ -169,8 +169,8 @@ struct OklabConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.01)
   }
 
-  @Test("sRGB -> Oklch -> sRGB round-trip")
-  func srgbOklchRoundTrip() {
+  @Test
+  func `sRGB -> Oklch -> sRGB round-trip`() {
     let original = sRGB(r: 0.5, g: 0.3, b: 0.8)
     let oklch = original.converted(to: Oklch.self)
     let roundTrip = oklch.converted(to: sRGB.self)
@@ -182,8 +182,8 @@ struct OklabConversionTests {
 
   // MARK: - Protocol Conformance
 
-  @Test("Oklab converted(to:) convenience method")
-  func oklabConvertedToMethod() {
+  @Test
+  func `Oklab converted(to:) convenience method`() {
     let oklab = Oklab(l: 0.6, a: 0.1, b: -0.1)
     let roundTrip = oklab.converted(to: Oklab.self)
 
@@ -192,8 +192,8 @@ struct OklabConversionTests {
     #expect(abs(roundTrip.b - oklab.b) < 0.001)
   }
 
-  @Test("Oklch converted(to:) convenience method")
-  func oklchConvertedToMethod() {
+  @Test
+  func `Oklch converted(to:) convenience method`() {
     let oklch = Oklch(l: 0.7, c: 0.15, h: 180)
     let roundTrip = oklch.converted(to: Oklch.self)
 
@@ -205,8 +205,8 @@ struct OklabConversionTests {
 
   // MARK: - Lightness Component
 
-  @Test("Oklab Lightness typed component")
-  func oklabLightnessComponent() throws {
+  @Test
+  func `Oklab Lightness typed component`() throws {
     let lightness = try Oklab.Lightness(0.5)
     #expect(lightness.value == 0.5)
 

@@ -9,36 +9,36 @@ import Testing
 struct ThemeTests {
   // MARK: - Theme Cases
 
-  @Test("Theme has two cases")
-  func themeCaseCount() {
+  @Test
+  func `Theme has two cases`() {
     #expect(Theme.caseCount == 2)
   }
 
-  @Test("Light theme has index 0")
-  func lightIndex() {
+  @Test
+  func `Light theme has index 0`() {
     #expect(Theme.light.caseIndex == 0)
   }
 
-  @Test("Dark theme has index 1")
-  func darkIndex() {
+  @Test
+  func `Dark theme has index 1`() {
     #expect(Theme.dark.caseIndex == 1)
   }
 
-  @Test("Theme description")
-  func themeDescription() {
+  @Test
+  func `Theme description`() {
     #expect(Theme.light.description == "light")
     #expect(Theme.dark.description == "dark")
   }
 
-  @Test("Theme equality")
-  func themeEquality() {
+  @Test
+  func `Theme equality`() {
     #expect(Theme.light == Theme.light)
     #expect(Theme.dark == Theme.dark)
     #expect(Theme.light != Theme.dark)
   }
 
-  @Test("Theme from caseIndex round-trip")
-  func themeFromCaseIndex() {
+  @Test
+  func `Theme from caseIndex round-trip`() {
     let light = Theme(caseIndex: 0)
     let dark = Theme(caseIndex: 1)
     #expect(light == Theme.light)
@@ -47,8 +47,8 @@ struct ThemeTests {
 
   // MARK: - Enumerable Conformance
 
-  @Test("Theme conforms to Enumerable")
-  func themeEnumerable() {
+  @Test
+  func `Theme conforms to Enumerable`() {
     var themes: [Theme] = []
     for i in 0..<Theme.caseCount {
       themes.append(Theme(caseIndex: i))
@@ -63,22 +63,22 @@ struct ThemeTests {
 struct ThemeProductTests {
   // MARK: - Initialization
 
-  @Test("Product initialization")
-  func productInit() {
+  @Test
+  func `Product initialization`() {
     let product = Theme.Product(light: "A", dark: "B")
     #expect(product.light == "A")
     #expect(product.dark == "B")
   }
 
-  @Test("Uniform initialization")
-  func uniformInit() {
+  @Test
+  func `Uniform initialization`() {
     let product = Theme.Product(uniform: 42)
     #expect(product.light == 42)
     #expect(product.dark == 42)
   }
 
-  @Test("Array initialization")
-  func arrayInit() {
+  @Test
+  func `Array initialization`() {
     let product = Theme.Product(values: [1.0, 2.0])
     #expect(product.light == 1.0)
     #expect(product.dark == 2.0)
@@ -86,15 +86,15 @@ struct ThemeProductTests {
 
   // MARK: - Subscript Access
 
-  @Test("Subscript get by theme")
-  func subscriptGet() {
+  @Test
+  func `Subscript get by theme`() {
     let product = Theme.Product(light: "light", dark: "dark")
     #expect(product[.light] == "light")
     #expect(product[.dark] == "dark")
   }
 
-  @Test("Subscript set by theme")
-  func subscriptSet() {
+  @Test
+  func `Subscript set by theme`() {
     var product = Theme.Product(light: 0, dark: 0)
     product[.light] = 10
     product[.dark] = 20
@@ -104,16 +104,16 @@ struct ThemeProductTests {
 
   // MARK: - Functor Map
 
-  @Test("Map transforms both values")
-  func mapBothValues() {
+  @Test
+  func `Map transforms both values`() {
     let product = Theme.Product(light: 1, dark: 2)
     let mapped = product.map { $0 * 10 }
     #expect(mapped.light == 10)
     #expect(mapped.dark == 20)
   }
 
-  @Test("MapWithTheme has access to theme")
-  func mapWithTheme() {
+  @Test
+  func `MapWithTheme has access to theme`() {
     let product = Theme.Product(light: "value", dark: "value")
     let mapped = product.mapWithTheme { theme, value in
       "\(theme.description):\(value)"
@@ -122,8 +122,8 @@ struct ThemeProductTests {
     #expect(mapped.dark == "dark:value")
   }
 
-  @Test("Static map function")
-  func staticMap() {
+  @Test
+  func `Static map function`() {
     let product = Theme.Product(light: 3, dark: 4)
     let mapped = Theme.Product<Int>.map(product) { $0 + 1 }
     #expect(mapped.light == 4)
@@ -132,8 +132,8 @@ struct ThemeProductTests {
 
   // MARK: - Zip
 
-  @Test("Zip combines two products")
-  func zipProducts() {
+  @Test
+  func `Zip combines two products`() {
     let a = Theme.Product(light: 1, dark: 2)
     let b = Theme.Product(light: "A", dark: "B")
     let zipped: Theme.Product<(Int, String)> = Theme.Product.zip(a, b)
@@ -141,8 +141,8 @@ struct ThemeProductTests {
     #expect(zipped.dark == (2, "B"))
   }
 
-  @Test("ZipWith combines using function")
-  func zipWithFunction() {
+  @Test
+  func `ZipWith combines using function`() {
     let a = Theme.Product(light: 10, dark: 20)
     let b = Theme.Product(light: 1, dark: 2)
     let result = Theme.Product.zipWith(a, b) { $0 + $1 }
@@ -152,8 +152,8 @@ struct ThemeProductTests {
 
   // MARK: - Values Array
 
-  @Test("Values returns array in order")
-  func valuesArray() {
+  @Test
+  func `Values returns array in order`() {
     let product = Theme.Product(light: "first", dark: "second")
     let values = product.values
     #expect(values.count == 2)
@@ -163,8 +163,8 @@ struct ThemeProductTests {
 
   // MARK: - Conditional Conformances
 
-  @Test("Product is Equatable when Value is Equatable")
-  func productEquatable() {
+  @Test
+  func `Product is Equatable when Value is Equatable`() {
     let a = Theme.Product(light: 1, dark: 2)
     let b = Theme.Product(light: 1, dark: 2)
     let c = Theme.Product(light: 1, dark: 3)
@@ -172,8 +172,8 @@ struct ThemeProductTests {
     #expect(a != c)
   }
 
-  @Test("Product is Hashable when Value is Hashable")
-  func productHashable() {
+  @Test
+  func `Product is Hashable when Value is Hashable`() {
     let a = Theme.Product(light: "x", dark: "y")
     let b = Theme.Product(light: "x", dark: "y")
     #expect(a.hashValue == b.hashValue)

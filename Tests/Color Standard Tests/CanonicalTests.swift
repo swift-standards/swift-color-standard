@@ -9,8 +9,8 @@ import Testing
 struct ColorTests {
   // MARK: - Constants
 
-  @Test("Black constant")
-  func blackConstant() {
+  @Test
+  func `Black constant`() {
     let black = Color.black
     #expect(black.alpha == 1.0)
 
@@ -20,8 +20,8 @@ struct ColorTests {
     #expect(rgb.b == 0, "Blue should be 0")
   }
 
-  @Test("White constant")
-  func whiteConstant() {
+  @Test
+  func `White constant`() {
     let white = Color.white
     #expect(white.alpha == 1.0)
 
@@ -31,16 +31,16 @@ struct ColorTests {
     #expect(abs(rgb.b - 1.0) < 0.001, "Blue should be ~1.0")
   }
 
-  @Test("Clear constant")
-  func clearConstant() {
+  @Test
+  func `Clear constant`() {
     let clear = Color.clear
     #expect(clear.alpha == 0.0)
   }
 
   // MARK: - Alpha Manipulation
 
-  @Test("withAlpha creates new instance")
-  func withAlphaCreatesNewInstance() {
+  @Test
+  func `withAlpha creates new instance`() {
     let original = Color.black
     let modified = original.withAlpha(0.5)
 
@@ -48,8 +48,8 @@ struct ColorTests {
     #expect(modified.alpha == 0.5, "Modified has new alpha")
   }
 
-  @Test("withAlpha clamps values")
-  func withAlphaClampsValues() {
+  @Test
+  func `withAlpha clamps values`() {
     let color = Color.black
     #expect(color.withAlpha(-0.5).alpha == 0.0)
     #expect(color.withAlpha(1.5).alpha == 1.0)
@@ -57,8 +57,8 @@ struct ColorTests {
 
   // MARK: - Equatable
 
-  @Test("Color equality")
-  func colorEquality() {
+  @Test
+  func `Color equality`() {
     let a = Color.black
     let b = Color.black
     let c = Color.white
@@ -69,8 +69,8 @@ struct ColorTests {
 
   // MARK: - Self-Conformance
 
-  @Test("Color conforms to Color.Protocol")
-  func colorSelfConformance() {
+  @Test
+  func `Color conforms to Color.Protocol`() {
     let original = Color.white
     let roundTrip = original.canonical()
 

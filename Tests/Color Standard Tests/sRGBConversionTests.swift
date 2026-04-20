@@ -11,8 +11,8 @@ struct sRGBConversionTests {
 
   // MARK: - Round-Trip Tests
 
-  @Test("Black round-trip")
-  func blackRoundTrip() {
+  @Test
+  func `Black round-trip`() {
     let original = sRGB.black
     let color = original.canonical()
     let roundTrip = sRGB(color)
@@ -22,8 +22,8 @@ struct sRGBConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.0001)
   }
 
-  @Test("White round-trip")
-  func whiteRoundTrip() {
+  @Test
+  func `White round-trip`() {
     let original = sRGB.white
     let color = original.canonical()
     let roundTrip = sRGB(color)
@@ -33,8 +33,8 @@ struct sRGBConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.0001)
   }
 
-  @Test("Primary red round-trip")
-  func redRoundTrip() {
+  @Test
+  func `Primary red round-trip`() {
     let original = sRGB.red
     let color = original.canonical()
     let roundTrip = sRGB(color)
@@ -44,8 +44,8 @@ struct sRGBConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.0001)
   }
 
-  @Test("Primary green round-trip")
-  func greenRoundTrip() {
+  @Test
+  func `Primary green round-trip`() {
     let original = sRGB.green
     let color = original.canonical()
     let roundTrip = sRGB(color)
@@ -55,8 +55,8 @@ struct sRGBConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.0001)
   }
 
-  @Test("Primary blue round-trip")
-  func blueRoundTrip() {
+  @Test
+  func `Primary blue round-trip`() {
     let original = sRGB.blue
     let color = original.canonical()
     let roundTrip = sRGB(color)
@@ -66,8 +66,8 @@ struct sRGBConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.0001)
   }
 
-  @Test("Arbitrary color round-trip")
-  func arbitraryRoundTrip() {
+  @Test
+  func `Arbitrary color round-trip`() {
     let original = sRGB(r: 0.5, g: 0.3, b: 0.8)
     let color = original.canonical()
     let roundTrip = sRGB(color)
@@ -77,8 +77,8 @@ struct sRGBConversionTests {
     #expect(abs(roundTrip.b - original.b) < 0.0001)
   }
 
-  @Test("Gray round-trip")
-  func grayRoundTrip() {
+  @Test
+  func `Gray round-trip`() {
     let original = sRGB(gray: 0.5)
     let color = original.canonical()
     let roundTrip = sRGB(color)
@@ -90,8 +90,8 @@ struct sRGBConversionTests {
 
   // MARK: - Conversion Accuracy
 
-  @Test("sRGB to Color preserves luminance relationship")
-  func luminanceOrder() {
+  @Test
+  func `sRGB to Color preserves luminance relationship`() {
     let dark = sRGB(gray: 0.2).canonical()
     let mid = sRGB(gray: 0.5).canonical()
     let light = sRGB(gray: 0.8).canonical()
@@ -103,8 +103,8 @@ struct sRGBConversionTests {
 
   // MARK: - Protocol Conformance
 
-  @Test("sRGB converted(to:) convenience method")
-  func convertedToMethod() {
+  @Test
+  func `sRGB converted(to:) convenience method`() {
     let original = sRGB(r: 0.5, g: 0.3, b: 0.8)
     let roundTrip = original.converted(to: sRGB.self)
 

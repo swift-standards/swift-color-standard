@@ -31,15 +31,15 @@ public struct Theme: Hashable, Sendable {
 
   /// Creates a theme from its ordinal without bounds checking.
   @inlinable
-  public init(__unchecked: Void, ordinal: Ordinal) {
+  public init(_unchecked: Void, ordinal: Ordinal) {
     self.ordinal = ordinal
   }
 
   /// Light appearance mode.
-  public static let light = Theme(__unchecked: (), ordinal: 0)
+  public static let light = Theme(_unchecked: (), ordinal: 0)
 
   /// Dark appearance mode.
-  public static let dark = Theme(__unchecked: (), ordinal: 1)
+  public static let dark = Theme(_unchecked: (), ordinal: 1)
 }
 
 // MARK: - Enumerable Conformance

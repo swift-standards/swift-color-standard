@@ -14,11 +14,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # Build + test matrix — see swift-institute/.github/.github/workflows/swift-ci.yml
+  # Build + test matrix — see swift-standards/.github/.github/workflows/swift-ci.yml
+  # (L2 layer wrapper per [CI-004a]; thin pass-through to swift-institute/.github
+  # universal reusable).
   ci:
-    uses: swift-institute/.github/.github/workflows/swift-ci.yml@main
+    uses: swift-standards/.github/.github/workflows/swift-ci.yml@main
     with:
-      cache-key-prefix: swift63-spm-v1
       enable-private-repos: true
     secrets:
       PRIVATE_REPO_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}

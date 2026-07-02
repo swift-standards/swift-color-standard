@@ -1,6 +1,6 @@
 # .github/metadata.yaml
 # Triaged by AI-assisted bulk pass (2026-04-29).
-description: "Colour meta-package combining CIE LAB, CIE LCH, Oklab, and Oklch colour spaces in Swift."
+description: "Unified Color type converting between sRGB, CIE LAB, CIE LCH, Oklab, Oklch, and CIE XYZ color spaces for Swift."
 topics:
   - standards
   - color

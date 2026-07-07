@@ -26,37 +26,37 @@ public import Dimension_Primitives
 /// - `Theme.Product<V>` is the exponential object `V^Theme ≅ V × V`
 /// - Selection `product[theme]` is projection `π_i`
 public struct Theme: Hashable, Sendable {
-  /// Ordinal position of this theme case (0 = light, 1 = dark).
-  public let ordinal: Ordinal
+    /// Ordinal position of this theme case (0 = light, 1 = dark).
+    public let ordinal: Ordinal
 
-  /// Creates a theme from its ordinal without bounds checking.
-  @inlinable
-  public init(_unchecked: Void, ordinal: Ordinal) {
-    self.ordinal = ordinal
-  }
+    /// Creates a theme from its ordinal without bounds checking.
+    @inlinable
+    public init(_unchecked: Void, ordinal: Ordinal) {
+        self.ordinal = ordinal
+    }
 
-  /// Light appearance mode.
-  public static let light = Theme(_unchecked: (), ordinal: 0)
+    /// Light appearance mode.
+    public static let light = Theme(_unchecked: (), ordinal: 0)
 
-  /// Dark appearance mode.
-  public static let dark = Theme(_unchecked: (), ordinal: 1)
+    /// Dark appearance mode.
+    public static let dark = Theme(_unchecked: (), ordinal: 1)
 }
 
 // MARK: - Enumerable Conformance
 
 extension Theme: Finite.Enumerable {
-  /// Number of theme cases (2: light and dark).
-  public static let count: Cardinal = 2
+    /// Number of theme cases (2: light and dark).
+    public static let count: Cardinal = 2
 }
 
 // MARK: - CustomStringConvertible
 
 extension Theme: CustomStringConvertible {
-  public var description: String {
-    switch self {
-    case .light: return "light"
-    case .dark: return "dark"
-    default: return "unknown"
+    public var description: String {
+        switch self {
+        case .light: return "light"
+        case .dark: return "dark"
+        default: return "unknown"
+        }
     }
-  }
 }

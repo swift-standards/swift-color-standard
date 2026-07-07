@@ -7,180 +7,180 @@ import Testing
 
 @Suite("Theme Tests")
 struct ThemeTests {
-  // MARK: - Theme Cases
+    // MARK: - Theme Cases
 
-  @Test
-  func `Theme has two cases`() {
-    #expect(Theme.caseCount == 2)
-  }
-
-  @Test
-  func `Light theme has index 0`() {
-    #expect(Theme.light.caseIndex == 0)
-  }
-
-  @Test
-  func `Dark theme has index 1`() {
-    #expect(Theme.dark.caseIndex == 1)
-  }
-
-  @Test
-  func `Theme description`() {
-    #expect(Theme.light.description == "light")
-    #expect(Theme.dark.description == "dark")
-  }
-
-  @Test
-  func `Theme equality`() {
-    #expect(Theme.light == Theme.light)
-    #expect(Theme.dark == Theme.dark)
-    #expect(Theme.light != Theme.dark)
-  }
-
-  @Test
-  func `Theme from caseIndex round-trip`() {
-    let light = Theme(caseIndex: 0)
-    let dark = Theme(caseIndex: 1)
-    #expect(light == Theme.light)
-    #expect(dark == Theme.dark)
-  }
-
-  // MARK: - Enumerable Conformance
-
-  @Test
-  func `Theme conforms to Enumerable`() {
-    var themes: [Theme] = []
-    for i in 0..<Theme.caseCount {
-      themes.append(Theme(caseIndex: i))
+    @Test
+    func `Theme has two cases`() {
+        #expect(Theme.caseCount == 2)
     }
-    #expect(themes.count == 2)
-    #expect(themes[0] == .light)
-    #expect(themes[1] == .dark)
-  }
+
+    @Test
+    func `Light theme has index 0`() {
+        #expect(Theme.light.caseIndex == 0)
+    }
+
+    @Test
+    func `Dark theme has index 1`() {
+        #expect(Theme.dark.caseIndex == 1)
+    }
+
+    @Test
+    func `Theme description`() {
+        #expect(Theme.light.description == "light")
+        #expect(Theme.dark.description == "dark")
+    }
+
+    @Test
+    func `Theme equality`() {
+        #expect(Theme.light == Theme.light)
+        #expect(Theme.dark == Theme.dark)
+        #expect(Theme.light != Theme.dark)
+    }
+
+    @Test
+    func `Theme from caseIndex round-trip`() {
+        let light = Theme(caseIndex: 0)
+        let dark = Theme(caseIndex: 1)
+        #expect(light == Theme.light)
+        #expect(dark == Theme.dark)
+    }
+
+    // MARK: - Enumerable Conformance
+
+    @Test
+    func `Theme conforms to Enumerable`() {
+        var themes: [Theme] = []
+        for i in 0..<Theme.caseCount {
+            themes.append(Theme(caseIndex: i))
+        }
+        #expect(themes.count == 2)
+        #expect(themes[0] == .light)
+        #expect(themes[1] == .dark)
+    }
 }
 
 @Suite("Theme.Product Tests")
 struct ThemeProductTests {
-  // MARK: - Initialization
+    // MARK: - Initialization
 
-  @Test
-  func `Product initialization`() {
-    let product = Theme.Product(light: "A", dark: "B")
-    #expect(product.light == "A")
-    #expect(product.dark == "B")
-  }
-
-  @Test
-  func `Uniform initialization`() {
-    let product = Theme.Product(uniform: 42)
-    #expect(product.light == 42)
-    #expect(product.dark == 42)
-  }
-
-  @Test
-  func `Array initialization`() {
-    let product = Theme.Product(values: [1.0, 2.0])
-    #expect(product.light == 1.0)
-    #expect(product.dark == 2.0)
-  }
-
-  // MARK: - Subscript Access
-
-  @Test
-  func `Subscript get by theme`() {
-    let product = Theme.Product(light: "light", dark: "dark")
-    #expect(product[.light] == "light")
-    #expect(product[.dark] == "dark")
-  }
-
-  @Test
-  func `Subscript set by theme`() {
-    var product = Theme.Product(light: 0, dark: 0)
-    product[.light] = 10
-    product[.dark] = 20
-    #expect(product.light == 10)
-    #expect(product.dark == 20)
-  }
-
-  // MARK: - Functor Map
-
-  @Test
-  func `Map transforms both values`() {
-    let product = Theme.Product(light: 1, dark: 2)
-    let mapped = product.map { $0 * 10 }
-    #expect(mapped.light == 10)
-    #expect(mapped.dark == 20)
-  }
-
-  @Test
-  func `MapWithTheme has access to theme`() {
-    let product = Theme.Product(light: "value", dark: "value")
-    let mapped = product.mapWithTheme { theme, value in
-      "\(theme.description):\(value)"
+    @Test
+    func `Product initialization`() {
+        let product = Theme.Product(light: "A", dark: "B")
+        #expect(product.light == "A")
+        #expect(product.dark == "B")
     }
-    #expect(mapped.light == "light:value")
-    #expect(mapped.dark == "dark:value")
-  }
 
-  @Test
-  func `Static map function`() {
-    let product = Theme.Product(light: 3, dark: 4)
-    let mapped = Theme.Product<Int>.map(product) { $0 + 1 }
-    #expect(mapped.light == 4)
-    #expect(mapped.dark == 5)
-  }
+    @Test
+    func `Uniform initialization`() {
+        let product = Theme.Product(uniform: 42)
+        #expect(product.light == 42)
+        #expect(product.dark == 42)
+    }
 
-  // MARK: - Zip
+    @Test
+    func `Array initialization`() {
+        let product = Theme.Product(values: [1.0, 2.0])
+        #expect(product.light == 1.0)
+        #expect(product.dark == 2.0)
+    }
 
-  @Test
-  func `Zip combines two products`() {
-    let a = Theme.Product(light: 1, dark: 2)
-    let b = Theme.Product(light: "A", dark: "B")
-    let zipped: Theme.Product<(Int, String)> = Theme.Product.zip(a, b)
-    #expect(zipped.light == (1, "A"))
-    #expect(zipped.dark == (2, "B"))
-  }
+    // MARK: - Subscript Access
 
-  @Test
-  func `ZipWith combines using function`() {
-    let a = Theme.Product(light: 10, dark: 20)
-    let b = Theme.Product(light: 1, dark: 2)
-    let result = Theme.Product.zipWith(a, b) { $0 + $1 }
-    #expect(result.light == 11)
-    #expect(result.dark == 22)
-  }
+    @Test
+    func `Subscript get by theme`() {
+        let product = Theme.Product(light: "light", dark: "dark")
+        #expect(product[.light] == "light")
+        #expect(product[.dark] == "dark")
+    }
 
-  // MARK: - Values Array
+    @Test
+    func `Subscript set by theme`() {
+        var product = Theme.Product(light: 0, dark: 0)
+        product[.light] = 10
+        product[.dark] = 20
+        #expect(product.light == 10)
+        #expect(product.dark == 20)
+    }
 
-  @Test
-  func `Values returns array in order`() {
-    let product = Theme.Product(light: "first", dark: "second")
-    let values = product.values
-    #expect(values.count == 2)
-    #expect(values[0] == "first")
-    #expect(values[1] == "second")
-  }
+    // MARK: - Functor Map
 
-  // MARK: - Conditional Conformances
+    @Test
+    func `Map transforms both values`() {
+        let product = Theme.Product(light: 1, dark: 2)
+        let mapped = product.map { $0 * 10 }
+        #expect(mapped.light == 10)
+        #expect(mapped.dark == 20)
+    }
 
-  @Test
-  func `Product is Equatable when Value is Equatable`() {
-    let a = Theme.Product(light: 1, dark: 2)
-    let b = Theme.Product(light: 1, dark: 2)
-    let c = Theme.Product(light: 1, dark: 3)
-    #expect(a == b)
-    #expect(a != c)
-  }
+    @Test
+    func `MapWithTheme has access to theme`() {
+        let product = Theme.Product(light: "value", dark: "value")
+        let mapped = product.mapWithTheme { theme, value in
+            "\(theme.description):\(value)"
+        }
+        #expect(mapped.light == "light:value")
+        #expect(mapped.dark == "dark:value")
+    }
 
-  @Test
-  func `Product is Hashable when Value is Hashable`() {
-    let a = Theme.Product(light: "x", dark: "y")
-    let b = Theme.Product(light: "x", dark: "y")
-    #expect(a.hashValue == b.hashValue)
+    @Test
+    func `Static map function`() {
+        let product = Theme.Product(light: 3, dark: 4)
+        let mapped = Theme.Product<Int>.map(product) { $0 + 1 }
+        #expect(mapped.light == 4)
+        #expect(mapped.dark == 5)
+    }
 
-    // Can be used as dictionary key
-    var dict: [Theme.Product<String>: Int] = [:]
-    dict[a] = 42
-    #expect(dict[b] == 42)
-  }
+    // MARK: - Zip
+
+    @Test
+    func `Zip combines two products`() {
+        let a = Theme.Product(light: 1, dark: 2)
+        let b = Theme.Product(light: "A", dark: "B")
+        let zipped: Theme.Product<(Int, String)> = Theme.Product.zip(a, b)
+        #expect(zipped.light == (1, "A"))
+        #expect(zipped.dark == (2, "B"))
+    }
+
+    @Test
+    func `ZipWith combines using function`() {
+        let a = Theme.Product(light: 10, dark: 20)
+        let b = Theme.Product(light: 1, dark: 2)
+        let result = Theme.Product.zipWith(a, b) { $0 + $1 }
+        #expect(result.light == 11)
+        #expect(result.dark == 22)
+    }
+
+    // MARK: - Values Array
+
+    @Test
+    func `Values returns array in order`() {
+        let product = Theme.Product(light: "first", dark: "second")
+        let values = product.values
+        #expect(values.count == 2)
+        #expect(values[0] == "first")
+        #expect(values[1] == "second")
+    }
+
+    // MARK: - Conditional Conformances
+
+    @Test
+    func `Product is Equatable when Value is Equatable`() {
+        let a = Theme.Product(light: 1, dark: 2)
+        let b = Theme.Product(light: 1, dark: 2)
+        let c = Theme.Product(light: 1, dark: 3)
+        #expect(a == b)
+        #expect(a != c)
+    }
+
+    @Test
+    func `Product is Hashable when Value is Hashable`() {
+        let a = Theme.Product(light: "x", dark: "y")
+        let b = Theme.Product(light: "x", dark: "y")
+        #expect(a.hashValue == b.hashValue)
+
+        // Can be used as dictionary key
+        var dict: [Theme.Product<String>: Int] = [:]
+        dict[a] = 42
+        #expect(dict[b] == 42)
+    }
 }

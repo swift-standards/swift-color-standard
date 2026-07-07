@@ -166,29 +166,35 @@ extension Color {
 
     /// Convert from 16-color palette.
     private static func _fromPalette(_ palette: ECMA_48.SGR.Color.Palette) -> Color {
-        let rgb: (UInt8, UInt8, UInt8) = switch palette {
-        case .black:         (0, 0, 0)
-        case .red:           (128, 0, 0)
-        case .green:         (0, 128, 0)
-        case .yellow:        (128, 128, 0)
-        case .blue:          (0, 0, 128)
-        case .magenta:       (128, 0, 128)
-        case .cyan:          (0, 128, 128)
-        case .white:         (192, 192, 192)
-        case .brightBlack:   (128, 128, 128)
-        case .brightRed:     (255, 0, 0)
-        case .brightGreen:   (0, 255, 0)
-        case .brightYellow:  (255, 255, 0)
-        case .brightBlue:    (0, 0, 255)
-        case .brightMagenta: (255, 0, 255)
-        case .brightCyan:    (0, 255, 255)
-        case .brightWhite:   (255, 255, 255)
-        }
+        let rgb: (UInt8, UInt8, UInt8) =
+            switch palette {
+            case .black: (0, 0, 0)
+            case .red: (128, 0, 0)
+            case .green: (0, 128, 0)
+            case .yellow: (128, 128, 0)
+            case .blue: (0, 0, 128)
+            case .magenta: (128, 0, 128)
+            case .cyan: (0, 128, 128)
+            case .white: (192, 192, 192)
+            case .brightBlack: (128, 128, 128)
+            case .brightRed: (255, 0, 0)
+            case .brightGreen: (0, 255, 0)
+            case .brightYellow: (255, 255, 0)
+            case .brightBlue: (0, 0, 255)
+            case .brightMagenta: (255, 0, 255)
+            case .brightCyan: (0, 255, 255)
+            case .brightWhite: (255, 255, 255)
+            }
         return _fromRGB(r: rgb.0, g: rgb.1, b: rgb.2)
     }
 
     /// Find closest 16-color palette entry.
-    private func closestPaletteColor(r: Double, g: Double, b: Double, bright: Bool) -> ECMA_48.SGR.Color.Palette {
+    private func closestPaletteColor(
+        r: Double,
+        g: Double,
+        b: Double,
+        bright: Bool
+    ) -> ECMA_48.SGR.Color.Palette {
         // Simple heuristic: check which primary/secondary color dominates
         let threshold = 0.3
 
@@ -217,10 +223,10 @@ extension Color {
         case (true, false, false): palette = .red
         case (false, true, false): palette = .green
         case (false, false, true): palette = .blue
-        case (true, true, false):  palette = .yellow
-        case (true, false, true):  palette = .magenta
-        case (false, true, true):  palette = .cyan
-        case (true, true, true):   palette = .white
+        case (true, true, false): palette = .yellow
+        case (true, false, true): palette = .magenta
+        case (false, true, true): palette = .cyan
+        case (true, true, true): palette = .white
         case (false, false, false): palette = .black
         }
 

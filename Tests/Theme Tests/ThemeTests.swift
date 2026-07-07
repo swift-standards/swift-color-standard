@@ -1,6 +1,9 @@
 // ThemeTests.swift
 // Tests for Theme and Theme.Product
 
+import Cardinal_Primitives_Standard_Library_Integration
+import Finite_Enumerable_Primitives
+import Ordinal_Primitives_Standard_Library_Integration
 import Testing
 
 @testable import Theme
@@ -11,17 +14,17 @@ struct ThemeTests {
 
     @Test
     func `Theme has two cases`() {
-        #expect(Theme.caseCount == 2)
+        #expect(Theme.count == 2)
     }
 
     @Test
     func `Light theme has index 0`() {
-        #expect(Theme.light.caseIndex == 0)
+        #expect(Theme.light.ordinal == 0)
     }
 
     @Test
     func `Dark theme has index 1`() {
-        #expect(Theme.dark.caseIndex == 1)
+        #expect(Theme.dark.ordinal == 1)
     }
 
     @Test
@@ -38,21 +41,18 @@ struct ThemeTests {
     }
 
     @Test
-    func `Theme from caseIndex round-trip`() {
-        let light = Theme(caseIndex: 0)
-        let dark = Theme(caseIndex: 1)
-        #expect(light == Theme.light)
-        #expect(dark == Theme.dark)
+    func `Theme from ordinal round-trip`() {
+        let light = Theme(0)
+        let dark = Theme(1)
+        #expect(light == .some(Theme.light))
+        #expect(dark == .some(Theme.dark))
     }
 
     // MARK: - Enumerable Conformance
 
     @Test
     func `Theme conforms to Enumerable`() {
-        var themes: [Theme] = []
-        for i in 0..<Theme.caseCount {
-            themes.append(Theme(caseIndex: i))
-        }
+        let themes = Array(Theme.allCases)
         #expect(themes.count == 2)
         #expect(themes[0] == .light)
         #expect(themes[1] == .dark)

@@ -108,11 +108,12 @@ extension Color.Oklab.Lightness {
     /// Error thrown when lightness is out of valid range.
     public struct Error: Swift.Error, Sendable, CustomStringConvertible {
         public let value: Double
-        public static let validRange: ClosedRange<Double> = 0...1
     }
 }
 
 extension Color.Oklab.Lightness.Error {
+    public static let validRange: ClosedRange<Double> = 0...1
+
     public var description: String {
         "Oklab lightness \(value) is out of valid range \(Self.validRange)"
     }

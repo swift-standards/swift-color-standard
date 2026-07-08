@@ -34,7 +34,11 @@ public struct Theme: Hashable, Sendable {
     public init(_unchecked: Void, ordinal: Ordinal) {
         self.ordinal = ordinal
     }
+}
 
+// MARK: - Common Instances
+
+extension Theme {
     /// Light appearance mode.
     public static let light = Theme(_unchecked: (), ordinal: 0)
 

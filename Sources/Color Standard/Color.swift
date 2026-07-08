@@ -60,9 +60,11 @@ public struct Color: Sendable, Hashable {
         self._xyz = _xyz
         self._alpha = _alpha.clamped(to: 0...1)
     }
+}
 
-    // MARK: - Public API (Stable)
+// MARK: - Public API (Stable)
 
+extension Color {
     /// Alpha/opacity component (0 = transparent, 1 = opaque).
     public var alpha: Double { _alpha }
 

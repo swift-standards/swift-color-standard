@@ -107,10 +107,12 @@ extension Color.LAB.Lightness {
     public struct Error: Swift.Error, Sendable, CustomStringConvertible {
         public let value: Double
         public static let validRange: ClosedRange<Double> = 0...100
+    }
+}
 
-        public var description: String {
-            "LAB lightness \(value) is out of valid range \(Self.validRange)"
-        }
+extension Color.LAB.Lightness.Error {
+    public var description: String {
+        "LAB lightness \(value) is out of valid range \(Self.validRange)"
     }
 }
 

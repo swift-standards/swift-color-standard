@@ -8,59 +8,61 @@ import Testing
 
 @testable import Theme
 
-@Suite("Theme Tests")
-struct ThemeTests {
-    // MARK: - Theme Cases
+extension Theme {
+    @Suite("Theme Tests")
+    struct Test {
+        // MARK: - Theme Cases
 
-    @Test
-    func `Theme has two cases`() {
-        #expect(Theme.count == 2)
-    }
+        @Test
+        func `Theme has two cases`() {
+            #expect(Theme.count == 2)
+        }
 
-    @Test
-    func `Light theme has index 0`() {
-        #expect(Theme.light.ordinal == 0)
-    }
+        @Test
+        func `Light theme has index 0`() {
+            #expect(Theme.light.ordinal == 0)
+        }
 
-    @Test
-    func `Dark theme has index 1`() {
-        #expect(Theme.dark.ordinal == 1)
-    }
+        @Test
+        func `Dark theme has index 1`() {
+            #expect(Theme.dark.ordinal == 1)
+        }
 
-    @Test
-    func `Theme description`() {
-        #expect(Theme.light.description == "light")
-        #expect(Theme.dark.description == "dark")
-    }
+        @Test
+        func `Theme description`() {
+            #expect(Theme.light.description == "light")
+            #expect(Theme.dark.description == "dark")
+        }
 
-    @Test
-    func `Theme equality`() {
-        #expect(Theme.light == Theme.light)
-        #expect(Theme.dark == Theme.dark)
-        #expect(Theme.light != Theme.dark)
-    }
+        @Test
+        func `Theme equality`() {
+            #expect(Theme.light == Theme.light)
+            #expect(Theme.dark == Theme.dark)
+            #expect(Theme.light != Theme.dark)
+        }
 
-    @Test
-    func `Theme from ordinal round-trip`() {
-        let light = Theme(0)
-        let dark = Theme(1)
-        #expect(light == .some(Theme.light))
-        #expect(dark == .some(Theme.dark))
-    }
+        @Test
+        func `Theme from ordinal round-trip`() {
+            let light = Theme(0)
+            let dark = Theme(1)
+            #expect(light == .some(Theme.light))
+            #expect(dark == .some(Theme.dark))
+        }
 
-    // MARK: - Enumerable Conformance
+        // MARK: - Enumerable Conformance
 
-    @Test
-    func `Theme conforms to Enumerable`() {
-        let themes = Array(Theme.allCases)
-        #expect(themes.count == 2)
-        #expect(themes[0] == .light)
-        #expect(themes[1] == .dark)
+        @Test
+        func `Theme conforms to Enumerable`() {
+            let themes = Array(Theme.allCases)
+            #expect(themes.count == 2)
+            #expect(themes[0] == .light)
+            #expect(themes[1] == .dark)
+        }
     }
 }
 
-@Suite("Theme.Product Tests")
-struct ThemeProductTests {
+@Suite
+struct `Theme.Product Tests` {
     // MARK: - Initialization
 
     @Test

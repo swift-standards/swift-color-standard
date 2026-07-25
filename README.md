@@ -16,6 +16,19 @@ dependencies: [
 ]
 ```
 
+Add the product to your target:
+
+```swift
+.target(
+    name: "App",
+    dependencies: [
+        .product(name: "Color Standard", package: "swift-color-standard")
+    ]
+)
+```
+
+The package also vends `Theme` for color-role and product composition.
+
 ## License
 
 This package is licensed under the Apache License 2.0. See [LICENSE.md](LICENSE.md) for details.

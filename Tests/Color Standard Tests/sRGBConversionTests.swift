@@ -5,8 +5,9 @@ import Testing
 
 @testable import Color_Standard
 
-@Suite("sRGB Conversion Tests")
-struct sRGBConversionTests {
+extension IEC_61966.`2`.`1`.sRGB {
+    @Suite("sRGB Conversion Tests")
+    struct Test {
     typealias sRGB = IEC_61966.`2`.`1`.sRGB
 
     // MARK: - Round-Trip Tests
@@ -111,5 +112,6 @@ struct sRGBConversionTests {
         #expect(abs(roundTrip.r - original.r) < 0.0001)
         #expect(abs(roundTrip.g - original.g) < 0.0001)
         #expect(abs(roundTrip.b - original.b) < 0.0001)
+    }
     }
 }

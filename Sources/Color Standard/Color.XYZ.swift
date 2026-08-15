@@ -118,9 +118,11 @@ extension Color._XYZ {
         case (.d65, .d50):
             srcLMS = Self.d65LMS
             dstLMS = Self.d50LMS
+
         case (.d50, .d65):
             srcLMS = Self.d50LMS
             dstLMS = Self.d65LMS
+
         default:
             return self
         }

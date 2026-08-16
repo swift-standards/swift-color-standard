@@ -33,8 +33,10 @@ extension Color.Error: CustomStringConvertible {
         switch self {
         case .outOfGamut:
             return "Color is outside the target color space's representable gamut"
+
         case .unsupportedColorSpace:
             return "Color space is not supported for this conversion"
+
         case .invalidComponent(let component, let value):
             return "Invalid \(component) component value: \(value)"
         }

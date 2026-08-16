@@ -27,8 +27,10 @@ extension Color {
         switch capability {
         case .trueColor:
             return sgr
+
         case .palette8:
             return sgr256
+
         case .palette4:
             return sgrPalette
         }
@@ -99,8 +101,10 @@ extension Color {
         switch sgr {
         case .palette(let p):
             self = Self._fromPalette(p)
+
         case .extended(let index):
             self = Self._from256(index)
+
         case .rgb(let r, let g, let b):
             self = Self._fromRGB(r: r, g: g, b: b)
         }

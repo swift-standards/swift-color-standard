@@ -1,4 +1,4 @@
-// swift-tools-version: 6.3.3
+// swift-tools-version: 6.4
 
 import PackageDescription
 
@@ -6,21 +6,24 @@ import PackageDescription
 let package = Package(
     name: "swift-color-standard",
     platforms: [
-        .macOS("27"),
-        .iOS("27"),
-        .tvOS("27"),
-        .watchOS("27"),
-        .visionOS("27")
+        .macOS(.v27),
+        .iOS(.v27),
+        .tvOS(.v27),
+        .watchOS(.v27),
+        .visionOS(.v27),
     ],
     products: [
         .library(name: "Color Standard", targets: ["Color Standard"]),
-        .library(name: "Theme", targets: ["Theme"])
+        .library(name: "Theme", targets: ["Theme"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-primitives/swift-dimension-primitives.git", branch: "main"),
+        .package(
+            url: "https://github.com/swift-primitives/swift-dimension-primitives.git",
+            branch: "main"
+        ),
         .package(url: "https://github.com/swift-iec/swift-iec-61966.git", branch: "main"),
         .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main"),
-        .package(url: "https://github.com/swift-ecma/swift-ecma-48.git", branch: "main")
+        .package(url: "https://github.com/swift-ecma/swift-ecma-48.git", branch: "main"),
     ],
     targets: [
         // MARK: - Theme
@@ -38,19 +41,19 @@ let package = Package(
                 "Theme",
                 .product(name: "IEC 61966", package: "swift-iec-61966"),
                 .product(name: "ISO 9899", package: "swift-iso-9899"),
-                .product(name: "ECMA 48", package: "swift-ecma-48")
+                .product(name: "ECMA 48", package: "swift-ecma-48"),
             ]
         ),
         .testTarget(
             name: "Color Standard Tests",
             dependencies: [
-                "Color Standard",
+                "Color Standard"
             ]
         ),
         .testTarget(
             name: "Theme Tests",
             dependencies: [
-                "Color Standard",
+                "Color Standard"
             ]
         ),
     ],

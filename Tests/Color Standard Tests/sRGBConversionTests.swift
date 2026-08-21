@@ -1,6 +1,3 @@
-// sRGBConversionTests.swift
-// Tests for sRGB <-> Color round-trip conversions
-
 import Testing
 
 @testable import Color_Standard
@@ -9,8 +6,6 @@ extension IEC_61966.`2`.`1`.sRGB {
     @Suite("sRGB Conversion Tests")
     struct Test {
         typealias sRGB = IEC_61966.`2`.`1`.sRGB
-
-        // MARK: - Round-Trip Tests
 
         @Test
         func `Black round-trip`() {
@@ -89,20 +84,15 @@ extension IEC_61966.`2`.`1`.sRGB {
             #expect(abs(roundTrip.b - original.b) < 0.0001)
         }
 
-        // MARK: - Conversion Accuracy
-
         @Test
         func `sRGB to Color preserves luminance relationship`() {
             let dark = sRGB(gray: 0.2).canonical()
             let mid = sRGB(gray: 0.5).canonical()
             let light = sRGB(gray: 0.8).canonical()
 
-            // Y (luminance) should increase
             #expect(dark._xyz.y < mid._xyz.y)
             #expect(mid._xyz.y < light._xyz.y)
         }
-
-        // MARK: - Protocol Conformance
 
         @Test
         func `sRGB converted(to:) convenience method`() {

@@ -1,6 +1,3 @@
-// CanonicalTests.swift
-// Tests for Color and round-trip conversions
-
 import Testing
 
 @testable import Color_Standard
@@ -8,7 +5,6 @@ import Testing
 extension Color {
     @Suite("Color Tests")
     struct Test {
-        // MARK: - Constants
 
         @Test
         func `Black constant`() {
@@ -38,8 +34,6 @@ extension Color {
             #expect(clear.alpha == 0.0)
         }
 
-        // MARK: - Alpha Manipulation
-
         @Test
         func `withAlpha creates new instance`() {
             let original = Color.black
@@ -56,8 +50,6 @@ extension Color {
             #expect(color.withAlpha(1.5).alpha == 1.0)
         }
 
-        // MARK: - Equatable
-
         @Test
         func `Color equality`() {
             let a = Color.black
@@ -67,8 +59,6 @@ extension Color {
             #expect(a == b)
             #expect(a != c)
         }
-
-        // MARK: - Self-Conformance
 
         @Test
         func `Color conforms to Color.Protocol`() {

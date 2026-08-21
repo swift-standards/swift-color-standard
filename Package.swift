@@ -2,7 +2,6 @@
 
 import PackageDescription
 
-// Color Standard — Unified color interchange between color standards
 let package = Package(
     name: "swift-color-standard",
     platforms: [
@@ -26,7 +25,7 @@ let package = Package(
         .package(url: "https://github.com/swift-ecma/swift-ecma-48.git", branch: "main"),
     ],
     targets: [
-        // MARK: - Theme
+
         .target(
             name: "Theme",
             dependencies: [
@@ -34,7 +33,6 @@ let package = Package(
             ]
         ),
 
-        // MARK: - Color Standard
         .target(
             name: "Color Standard",
             dependencies: [

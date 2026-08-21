@@ -1,6 +1,3 @@
-// ThemeTests.swift
-// Tests for Theme and Theme.Product
-
 import Cardinal_Primitives_Standard_Library_Integration
 import Finite_Enumerable_Primitives
 import Ordinal_Primitives_Standard_Library_Integration
@@ -11,7 +8,6 @@ import Testing
 extension Theme {
     @Suite("Theme Tests")
     struct Test {
-        // MARK: - Theme Cases
 
         @Test
         func `Theme has two cases`() {
@@ -49,8 +45,6 @@ extension Theme {
             #expect(dark == .some(Theme.dark))
         }
 
-        // MARK: - Enumerable Conformance
-
         @Test
         func `Theme conforms to Enumerable`() {
             let themes = Array(Theme.allCases)
@@ -63,7 +57,6 @@ extension Theme {
 
 @Suite
 struct `Theme.Product Tests` {
-    // MARK: - Initialization
 
     @Test
     func `Product initialization`() {
@@ -86,8 +79,6 @@ struct `Theme.Product Tests` {
         #expect(product.dark == 2.0)
     }
 
-    // MARK: - Subscript Access
-
     @Test
     func `Subscript get by theme`() {
         let product = Theme.Product(light: "light", dark: "dark")
@@ -103,8 +94,6 @@ struct `Theme.Product Tests` {
         #expect(product.light == 10)
         #expect(product.dark == 20)
     }
-
-    // MARK: - Functor Map
 
     @Test
     func `Map transforms both values`() {
@@ -132,8 +121,6 @@ struct `Theme.Product Tests` {
         #expect(mapped.dark == 5)
     }
 
-    // MARK: - Zip
-
     @Test
     func `Zip combines two products`() {
         let a = Theme.Product(light: 1, dark: 2)
@@ -152,8 +139,6 @@ struct `Theme.Product Tests` {
         #expect(result.dark == 22)
     }
 
-    // MARK: - Values Array
-
     @Test
     func `Values returns array in order`() {
         let product = Theme.Product(light: "first", dark: "second")
@@ -162,8 +147,6 @@ struct `Theme.Product Tests` {
         #expect(values[0] == "first")
         #expect(values[1] == "second")
     }
-
-    // MARK: - Conditional Conformances
 
     @Test
     func `Product is Equatable when Value is Equatable`() {
@@ -180,7 +163,6 @@ struct `Theme.Product Tests` {
         let b = Theme.Product(light: "x", dark: "y")
         #expect(a.hashValue == b.hashValue)
 
-        // Can be used as dictionary key
         var dict: [Theme.Product<String>: Int] = [:]
         dict[a] = 42
         #expect(dict[b] == 42)

@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-dimension-primitives.git",
+            url: "https://github.com/swift-molecules/swift-dimension.git",
             branch: "main"
         ),
         .package(url: "https://github.com/swift-iec/swift-iec-61966.git", branch: "main"),
@@ -29,7 +29,7 @@ let package = Package(
         .target(
             name: "Theme",
             dependencies: [
-                .product(name: "Dimension Primitives", package: "swift-dimension-primitives")
+                .product(name: "Dimension", package: "swift-dimension")
             ]
         ),
 

@@ -1,4 +1,4 @@
-public import Dimension_Primitives
+public import Dimension
 
 public struct Theme: Hashable, Sendable {
 

@@ -1,6 +1,6 @@
-import Cardinal_Primitives_Standard_Library_Integration
-import Finite_Enumerable_Primitives
-import Ordinal_Primitives_Standard_Library_Integration
+import Cardinal_Standard_Library_Integration
+import Finite_Enumerable
+import Ordinal_Standard_Library_Integration
 import Testing
 
 @testable import Theme

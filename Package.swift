@@ -23,13 +23,19 @@ let package = Package(
         .package(url: "https://github.com/swift-iec/swift-iec-61966.git", branch: "main"),
         .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main"),
         .package(url: "https://github.com/swift-ecma/swift-ecma-48.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-cardinal.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-finite.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-ordinal.git", branch: "main"),
     ],
     targets: [
 
         .target(
             name: "Theme",
             dependencies: [
-                .product(name: "Spatial", package: "swift-spatial")
+                .product(name: "Spatial", package: "swift-spatial"),
+                .product(name: "Cardinal", package: "swift-cardinal"),
+                .product(name: "Finite", package: "swift-finite"),
+                .product(name: "Ordinal", package: "swift-ordinal"),
             ]
         ),
 

@@ -1,3 +1,6 @@
+public import Cardinal
+public import Finite
+public import Ordinal
 public import Spatial
 
 public struct Theme: Hashable, Sendable {

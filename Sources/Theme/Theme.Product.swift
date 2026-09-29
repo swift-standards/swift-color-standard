@@ -1,3 +1,4 @@
+public import Ordinal
 public import Spatial
 
 extension Theme {

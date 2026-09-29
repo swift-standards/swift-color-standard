@@ -1,6 +1,6 @@
-import Cardinal_Standard_Library_Integration
-import Finite_Enumerable
-import Ordinal_Standard_Library_Integration
+import Cardinal
+import Finite
+import Ordinal
 import Testing
 
 @testable import Theme

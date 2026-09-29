@@ -24,7 +24,7 @@ let package = Package(
         .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main"),
         .package(url: "https://github.com/swift-ecma/swift-ecma-48.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-cardinal.git", branch: "main"),
-        .package(url: "https://github.com/swift-atoms/swift-finite.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-finite.git", branch: "main", traits: ["Tagged"]),
         .package(url: "https://github.com/swift-atoms/swift-ordinal.git", branch: "main"),
     ],
     targets: [

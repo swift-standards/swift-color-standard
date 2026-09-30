@@ -65,6 +65,6 @@ extension Color: CustomDebugStringConvertible {
 
 extension Double {
     func clamped(to range: ClosedRange<Double>) -> Double {
-        min(max(self, range.lowerBound), range.upperBound)
+        isNaN ? range.lowerBound : min(max(self, range.lowerBound), range.upperBound)
     }
 }

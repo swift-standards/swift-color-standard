@@ -32,7 +32,7 @@ let package = Package(
         .target(
             name: "Theme",
             dependencies: [
-                .product(name: "Spatial", package: "swift-spatial"),
+                .product(name: "Space", package: "swift-spatial"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Finite", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),

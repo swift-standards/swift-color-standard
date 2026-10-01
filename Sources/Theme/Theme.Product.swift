@@ -1,5 +1,5 @@
 public import Ordinal
-public import Spatial
+public import Space
 
 extension Theme {
 

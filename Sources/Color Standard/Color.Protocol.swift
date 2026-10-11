@@ -1,21 +1,23 @@
-extension Color {
+public protocol _ColorProtocol: Sendable {
 
-    public protocol `Protocol`: Sendable {
+    func canonical() -> Color
 
-        func canonical() -> Color
-
-        init(_ color: Color)
-    }
+    init(_ color: Color)
 }
 
-extension Color.`Protocol` {
+extension Color {
+
+    public typealias `Protocol` = _ColorProtocol
+}
+
+extension _ColorProtocol {
 
     public func converted<Target: Color.`Protocol`>(to targetType: Target.Type) -> Target {
         Target(self.canonical())
     }
 }
 
-extension Color: Color.`Protocol` {
+extension Color: _ColorProtocol {
 
     public func canonical() -> Color {
         self

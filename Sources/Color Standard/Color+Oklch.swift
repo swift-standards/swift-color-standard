@@ -1,4 +1,4 @@
-extension Color.Oklch: Color.`Protocol` {
+extension Color.Oklch: _ColorProtocol {
 
     public func canonical() -> Color {
 

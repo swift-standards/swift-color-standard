@@ -1,6 +1,6 @@
 import ISO_9899
 
-extension Color.Oklab: Color.`Protocol` {
+extension Color.Oklab: _ColorProtocol {
 
     public func canonical() -> Color {
         Color._fromOklab(self)

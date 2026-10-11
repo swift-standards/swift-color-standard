@@ -1,4 +1,4 @@
-extension Color.LCH: Color.`Protocol` {
+extension Color.LCH: _ColorProtocol {
 
     public func canonical() -> Color {
 

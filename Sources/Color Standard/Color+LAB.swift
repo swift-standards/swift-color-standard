@@ -1,6 +1,6 @@
 import ISO_9899
 
-extension Color.LAB: Color.`Protocol` {
+extension Color.LAB: _ColorProtocol {
 
     public func canonical() -> Color {
         Color._fromLAB(self)

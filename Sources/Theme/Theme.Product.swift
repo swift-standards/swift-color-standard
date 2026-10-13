@@ -1,5 +1,5 @@
 public import Ordinal
-public import Space
+import Space
 
 extension Theme {
 
@@ -47,7 +47,7 @@ extension Theme.Product {
 extension Theme.Product {
 
     @inlinable
-    public static func map<NewValue, E: Swift.Error>(
+    public static func map<NewValue, E: Swift::Error>(
         _ product: Theme.Product<Value>,
         transform: (Value) throws(E) -> NewValue
     ) throws(E) -> Theme.Product<NewValue> {
@@ -58,7 +58,7 @@ extension Theme.Product {
     }
 
     @inlinable
-    public static func mapWithTheme<NewValue, E: Swift.Error>(
+    public static func mapWithTheme<NewValue, E: Swift::Error>(
         _ product: Theme.Product<Value>,
         transform: (Theme, Value) throws(E) -> NewValue
     ) throws(E) -> Theme.Product<NewValue> {
@@ -72,14 +72,14 @@ extension Theme.Product {
 extension Theme.Product {
 
     @inlinable
-    public func map<NewValue, E: Swift.Error>(
+    public func map<NewValue, E: Swift::Error>(
         _ transform: (Value) throws(E) -> NewValue
     ) throws(E) -> Theme.Product<NewValue> {
         try Self.map(self, transform: transform)
     }
 
     @inlinable
-    public func mapWithTheme<NewValue, E: Swift.Error>(
+    public func mapWithTheme<NewValue, E: Swift::Error>(
         _ transform: (Theme, Value) throws(E) -> NewValue
     ) throws(E) -> Theme.Product<NewValue> {
         try Self.mapWithTheme(self, transform: transform)
@@ -100,7 +100,7 @@ extension Theme.Product {
     }
 
     @inlinable
-    public static func zipWith<A, B, E: Swift.Error>(
+    public static func zipWith<A, B, E: Swift::Error>(
         _ a: Theme.Product<A>,
         _ b: Theme.Product<B>,
         combine: (A, B) throws(E) -> Value

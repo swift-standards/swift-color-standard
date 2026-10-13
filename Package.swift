@@ -42,7 +42,7 @@ let package = Package(
         .target(
             name: "Color Standard",
             dependencies: [
-                "Theme",
+                .target(name: "Theme"),
                 .product(name: "IEC 61966", package: "swift-iec-61966"),
                 .product(name: "ISO 9899", package: "swift-iso-9899"),
                 .product(name: "ECMA 48", package: "swift-ecma-48"),
@@ -51,13 +51,13 @@ let package = Package(
         .testTarget(
             name: "Color Standard Tests",
             dependencies: [
-                "Color Standard"
+                .target(name: "Color Standard")
             ]
         ),
         .testTarget(
             name: "Theme Tests",
             dependencies: [
-                "Color Standard"
+                .target(name: "Color Standard")
             ]
         ),
     ],
@@ -65,17 +65,14 @@ let package = Package(
 )
 
 for target in package.targets where ![.system, .binary, .plugin, .macro].contains(target.type) {
-    let ecosystem: [SwiftSetting] = [
+    target.swiftSettings = (target.swiftSettings ?? []) + [
         .strictMemorySafety(),
         .enableUpcomingFeature("ExistentialAny"),
         .enableUpcomingFeature("InternalImportsByDefault"),
         .enableUpcomingFeature("MemberImportVisibility"),
         .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
-        .enableExperimentalFeature("Lifetimes"),
         .enableUpcomingFeature("InferIsolatedConformances"),
+        .enableExperimentalFeature("Lifetimes"),
+        .treatAllWarnings(as: .error),
     ]
-
-    let package: [SwiftSetting] = []
-
-    target.swiftSettings = (target.swiftSettings ?? []) + ecosystem + package
 }

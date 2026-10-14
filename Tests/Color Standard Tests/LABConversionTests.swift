@@ -7,7 +7,7 @@ extension Color.LAB {
     struct Test {
         typealias LAB = Color.LAB
         typealias LCH = Color.LCH
-        typealias sRGB = IEC_61966.`2`.`1`.sRGB
+        typealias sRGB = IEC_61966.`2`.`1`.SRGB
 
         @Test
         func `LAB black round-trip`() {

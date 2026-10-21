@@ -47,11 +47,10 @@ extension Color: CustomDebugStringConvertible {
 
         func encode(_ linear: Double) -> Double {
             let clamped = linear.clamped(to: 0...1)
-            if clamped <= 0.0031308 {
-                return 12.92 * clamped
-            } else {
+            guard clamped <= 0.0031308 else {
                 return 1.055 * ISO_9899.Math.pow(clamped, 1.0 / 2.4) - 0.055
             }
+            return 12.92 * clamped
         }
 
         return (

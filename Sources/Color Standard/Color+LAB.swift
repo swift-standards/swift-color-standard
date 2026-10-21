@@ -60,11 +60,10 @@ extension Color {
         let zr = xyz.z / zn
 
         func f(_ t: Double) -> Double {
-            if t > epsilon {
-                return ISO_9899.Math.cbrt(t)
-            } else {
+            guard t > epsilon else {
                 return (kappa * t + 16.0) / 116.0
             }
+            return ISO_9899.Math.cbrt(t)
         }
 
         let fx = f(xr)

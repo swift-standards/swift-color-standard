@@ -93,11 +93,10 @@ extension Color {
         let bd = Double(b) / 255.0
 
         func linearize(_ v: Double) -> Double {
-            if v <= 0.04045 {
-                return v / 12.92
-            } else {
+            guard v <= 0.04045 else {
                 return ISO_9899.Math.pow((v + 0.055) / 1.055, 2.4)
             }
+            return v / 12.92
         }
 
         let lr = linearize(rd)
@@ -115,7 +114,10 @@ extension Color {
     private static func _from256(_ index: UInt8) -> Color {
         if index < 16 {
 
-            return _fromPalette(ECMA_48.SGR.Color.Palette(rawValue: Int(index))!)
+            guard let palette = ECMA_48.SGR.Color.Palette(rawValue: Int(index)) else {
+                preconditionFailure("Indices below 16 always map to a palette color")
+            }
+            return _fromPalette(palette)
         } else if index < 232 {
 
             let i = Int(index) - 16

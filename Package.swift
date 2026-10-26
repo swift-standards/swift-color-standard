@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-atoms/swift-spatial.git",
+            url: "https://github.com/swift-atoms/swift-space.git",
             branch: "main"
         ),
         .package(url: "https://github.com/swift-iec/swift-iec-61966.git", branch: "main"),
@@ -32,7 +32,7 @@ let package = Package(
         .target(
             name: "Theme",
             dependencies: [
-                .product(name: "Space", package: "swift-spatial"),
+                .product(name: "Space", package: "swift-space"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
                 .product(name: "Finite", package: "swift-finite"),
                 .product(name: "Ordinal", package: "swift-ordinal"),

@@ -2,7 +2,9 @@ import Testing
 
 @testable import Color_Standard
 
-extension Color.LAB {
+enum `Color.LAB Tests` {}
+
+extension `Color.LAB Tests` {
     @Suite("LAB Conversion Tests")
     struct Test {
         typealias LAB = Color.LAB

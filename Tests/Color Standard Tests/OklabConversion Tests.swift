@@ -2,7 +2,9 @@ import Testing
 
 @testable import Color_Standard
 
-extension Color.Oklab {
+enum `Color.Oklab Tests` {}
+
+extension `Color.Oklab Tests` {
     @Suite("Oklab Conversion Tests")
     struct Test {
         typealias Oklab = Color.Oklab

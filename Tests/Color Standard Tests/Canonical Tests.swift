@@ -2,7 +2,9 @@ import Testing
 
 @testable import Color_Standard
 
-extension Color {
+enum `Color Tests` {}
+
+extension `Color Tests` {
     @Suite("Color Tests")
     struct Test {
 

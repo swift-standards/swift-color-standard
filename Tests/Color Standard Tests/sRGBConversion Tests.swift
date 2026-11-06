@@ -2,7 +2,9 @@ import Testing
 
 @testable import Color_Standard
 
-extension IEC_61966.`2`.`1`.SRGB {
+enum `IEC_61966.2.1.SRGB Tests` {}
+
+extension `IEC_61966.2.1.SRGB Tests` {
     @Suite("sRGB Conversion Tests")
     struct Test {
         typealias sRGB = IEC_61966.`2`.`1`.SRGB

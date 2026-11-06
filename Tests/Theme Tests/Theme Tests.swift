@@ -5,7 +5,9 @@ import Testing
 
 @testable import Theme
 
-extension Theme {
+enum `Theme Tests` {}
+
+extension `Theme Tests` {
     @Suite("Theme Tests")
     struct Test {
 

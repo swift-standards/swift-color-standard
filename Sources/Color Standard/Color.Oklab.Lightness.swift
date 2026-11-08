@@ -1,6 +1,5 @@
 import ISO_9899
 
-
 extension Color.Oklab {
     public struct Lightness: Sendable, Hashable {
 

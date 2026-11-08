@@ -177,14 +177,14 @@ extension Color {
         let maxDiff = max(abs(r - g), abs(g - b), abs(r - b))
         if maxDiff < 0.15 {
             let avg = (r + g + b) / 3.0
-            if avg < 0.15 {
-                return .black
+            return if avg < 0.15 {
+                .black
             } else if avg < 0.5 {
-                return bright ? .brightBlack : .black
+                bright ? .brightBlack : .black
             } else if avg < 0.85 {
-                return bright ? .white : .brightBlack
+                bright ? .white : .brightBlack
             } else {
-                return .brightWhite
+                .brightWhite
             }
         }
 

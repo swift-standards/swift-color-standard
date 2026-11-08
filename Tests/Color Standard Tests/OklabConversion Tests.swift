@@ -5,7 +5,7 @@ import Testing
 enum `Color.Oklab Tests` {}
 
 extension `Color.Oklab Tests` {
-    @Suite("Oklab Conversion Tests")
+    @Suite
     struct Test {
         typealias Oklab = Color.Oklab
         typealias Oklch = Color.Oklch

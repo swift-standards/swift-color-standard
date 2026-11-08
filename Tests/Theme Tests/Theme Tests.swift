@@ -8,7 +8,7 @@ import Testing
 enum `Theme Tests` {}
 
 extension `Theme Tests` {
-    @Suite("Theme Tests")
+    @Suite
     struct Test {
 
         @Test

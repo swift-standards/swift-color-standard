@@ -5,7 +5,7 @@ import Testing
 enum `Color.LAB Tests` {}
 
 extension `Color.LAB Tests` {
-    @Suite("LAB Conversion Tests")
+    @Suite
     struct Test {
         typealias LAB = Color.LAB
         typealias LCH = Color.LCH

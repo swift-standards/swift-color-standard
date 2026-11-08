@@ -5,7 +5,7 @@ import Testing
 enum `Color Tests` {}
 
 extension `Color Tests` {
-    @Suite("Color Tests")
+    @Suite
     struct Test {
 
         @Test

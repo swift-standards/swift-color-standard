@@ -3,34 +3,37 @@ public import Finite
 public import Ordinal
 import Space
 
-public struct Theme: Hashable, Sendable {
+public enum Theme: Hashable, Sendable {
 
-    public let ordinal: Ordinal
+    case light
 
-    @inlinable
-    public init(_unchecked: Void, ordinal: Ordinal) {
-        self.ordinal = ordinal
-    }
-}
-
-extension Theme {
-
-    public static let light = Theme(_unchecked: (), ordinal: 0)
-
-    public static let dark = Theme(_unchecked: (), ordinal: 1)
+    case dark
 }
 
 extension Theme: Finite.Enumerable {
 
     public static let count: Cardinal = 2
+
+    @inlinable
+    public var ordinal: Ordinal {
+        switch self {
+        case .light: 0
+        case .dark: 1
+        }
+    }
+
+    @inlinable
+    public init(_unchecked: Void, ordinal: Ordinal) {
+        precondition(ordinal.rawValue < Self.count.rawValue, "Theme ordinal must be zero or one")
+        self = ordinal.rawValue == 0 ? .light : .dark
+    }
 }
 
 extension Theme: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .light: return "light"
-        case .dark: return "dark"
-        default: return "unknown"
+        case .light: "light"
+        case .dark: "dark"
         }
     }
 }

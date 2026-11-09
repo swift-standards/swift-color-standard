@@ -48,6 +48,11 @@ extension `Theme Tests` {
         }
 
         @Test
+        func `Theme from out-of-range ordinal is nil`() {
+            #expect(Theme(2) == nil)
+        }
+
+        @Test
         func `Theme conforms to Enumerable`() {
             let themes = Array(Theme.allCases)
             #expect(themes.count == 2)
@@ -75,10 +80,10 @@ struct `Theme.Product Tests` {
     }
 
     @Test
-    func `Array initialization`() {
-        let product = Theme.Product(values: [1.0, 2.0])
-        #expect(product.light == 1.0)
-        #expect(product.dark == 2.0)
+    func `Subscript covers every theme`() {
+        let product = Theme.Product(light: "light", dark: "dark")
+        let values = Theme.allCases.map { product[$0] }
+        #expect(values == ["light", "dark"])
     }
 
     @Test

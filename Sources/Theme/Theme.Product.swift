@@ -1,4 +1,3 @@
-public import Ordinal
 import Space
 
 extension Theme {
@@ -29,16 +28,14 @@ extension Theme.Product {
     public subscript(theme: Theme) -> Value {
         get {
             switch theme {
-            case .light: return light
-            case .dark: return dark
-            default: fatalError("Invalid theme ordinal: \(theme.ordinal)")
+            case .light: light
+            case .dark: dark
             }
         }
         set {
             switch theme {
             case .light: light = newValue
             case .dark: dark = newValue
-            default: fatalError("Invalid theme ordinal: \(theme.ordinal)")
             }
         }
     }
@@ -121,12 +118,5 @@ extension Theme.Product {
     @inlinable
     public var values: [Value] {
         [light, dark]
-    }
-
-    @inlinable
-    public init(values: [Value]) {
-        precondition(values.count == 2, "Array must have exactly 2 elements")
-        self.light = values[0]
-        self.dark = values[1]
     }
 }

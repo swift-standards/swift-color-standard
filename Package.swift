@@ -22,6 +22,7 @@ let package = Package(
         ),
         .package(url: "https://github.com/swift-iec/swift-iec-61966.git", branch: "main"),
         .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main"),
+        .package(url: "https://github.com/swift-iso/swift-iso-11664.git", branch: "main"),
         .package(url: "https://github.com/swift-ecma/swift-ecma-48.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-cardinal.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-finite.git", branch: "main", traits: ["Tagged"]),
@@ -45,13 +46,18 @@ let package = Package(
                 .target(name: "Theme"),
                 .product(name: "IEC 61966", package: "swift-iec-61966"),
                 .product(name: "ISO 9899", package: "swift-iso-9899"),
+                .product(name: "ISO 11664", package: "swift-iso-11664"),
                 .product(name: "ECMA 48", package: "swift-ecma-48"),
+                .product(name: "Cardinal", package: "swift-cardinal"),
             ]
         ),
         .testTarget(
             name: "Color Standard Tests",
             dependencies: [
-                .target(name: "Color Standard")
+                .target(name: "Color Standard"),
+                .product(name: "ISO 9899", package: "swift-iso-9899"),
+                .product(name: "ISO 11664", package: "swift-iso-11664"),
+                .product(name: "Cardinal", package: "swift-cardinal"),
             ]
         ),
         .testTarget(

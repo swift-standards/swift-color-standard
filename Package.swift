@@ -11,9 +11,7 @@ let package = Package(
         .watchOS(.v27),
         .visionOS(.v27),
     ],
-    products: [
-        .library(name: "Color Standard", targets: ["Color Standard"]),
-    ],
+    products: [.library(name: "Color Standard", targets: ["Color Standard"])],
     dependencies: [
         .package(url: "https://github.com/swift-iec/swift-iec-61966.git", branch: "main"),
         .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main"),

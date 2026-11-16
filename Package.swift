@@ -13,37 +13,18 @@ let package = Package(
     ],
     products: [
         .library(name: "Color Standard", targets: ["Color Standard"]),
-        .library(name: "Theme", targets: ["Theme"]),
     ],
     dependencies: [
-        .package(
-            url: "https://github.com/swift-atoms/swift-space.git",
-            branch: "main"
-        ),
         .package(url: "https://github.com/swift-iec/swift-iec-61966.git", branch: "main"),
         .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main"),
         .package(url: "https://github.com/swift-iso/swift-iso-11664.git", branch: "main"),
         .package(url: "https://github.com/swift-ecma/swift-ecma-48.git", branch: "main"),
         .package(url: "https://github.com/swift-atoms/swift-cardinal.git", branch: "main"),
-        .package(url: "https://github.com/swift-atoms/swift-finite.git", branch: "main", traits: ["Tagged"]),
-        .package(url: "https://github.com/swift-atoms/swift-ordinal.git", branch: "main"),
     ],
     targets: [
-
-        .target(
-            name: "Theme",
-            dependencies: [
-                .product(name: "Space", package: "swift-space"),
-                .product(name: "Cardinal", package: "swift-cardinal"),
-                .product(name: "Finite", package: "swift-finite"),
-                .product(name: "Ordinal", package: "swift-ordinal"),
-            ]
-        ),
-
         .target(
             name: "Color Standard",
             dependencies: [
-                .target(name: "Theme"),
                 .product(name: "IEC 61966", package: "swift-iec-61966"),
                 .product(name: "ISO 9899", package: "swift-iso-9899"),
                 .product(name: "ISO 11664", package: "swift-iso-11664"),
@@ -58,12 +39,6 @@ let package = Package(
                 .product(name: "ISO 9899", package: "swift-iso-9899"),
                 .product(name: "ISO 11664", package: "swift-iso-11664"),
                 .product(name: "Cardinal", package: "swift-cardinal"),
-            ]
-        ),
-        .testTarget(
-            name: "Theme Tests",
-            dependencies: [
-                .target(name: "Color Standard")
             ]
         ),
     ],

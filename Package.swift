@@ -12,6 +12,9 @@ let package = Package(
         .visionOS(.v27),
     ],
     products: [.library(name: "Color Standard", targets: ["Color Standard"])],
+    traits: [
+        .trait(name: "Terminal", description: "ECMA-48 terminal SGR color conversion")
+    ],
     dependencies: [
         .package(url: "https://github.com/swift-iec/swift-iec-61966.git", branch: "main"),
         .package(url: "https://github.com/swift-iso/swift-iso-9899.git", branch: "main"),
@@ -26,7 +29,7 @@ let package = Package(
                 .product(name: "IEC 61966", package: "swift-iec-61966"),
                 .product(name: "ISO 9899", package: "swift-iso-9899"),
                 .product(name: "ISO 11664", package: "swift-iso-11664"),
-                .product(name: "ECMA 48", package: "swift-ecma-48"),
+                .product(name: "ECMA 48", package: "swift-ecma-48", condition: .when(traits: ["Terminal"])),
                 .product(name: "Cardinal", package: "swift-cardinal"),
             ]
         ),

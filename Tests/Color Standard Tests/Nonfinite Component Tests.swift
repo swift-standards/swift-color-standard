@@ -11,9 +11,11 @@ extension `Nonfinite Component Tests` {
         func `a LAB color with a nonfinite axis converts to terminal colors without trapping`(_ value: Double) {
             let color = Color.LAB(l: 50, a: value, b: 0).canonical()
 
-            _ = color.sgr
-            _ = color.sgr256
-            _ = color.sgrPalette
+            #if Terminal
+                _ = color.sgr
+                _ = color.sgr256
+                _ = color.sgrPalette
+            #endif
             #expect(color._debugRGBA.r.isFinite)
         }
 
@@ -21,9 +23,11 @@ extension `Nonfinite Component Tests` {
         func `an Oklab color with a nonfinite axis converts to terminal colors without trapping`(_ value: Double) {
             let color = Color.Oklab(l: 0.5, a: 0, b: value).canonical()
 
-            _ = color.sgr
-            _ = color.sgr256
-            _ = color.sgrPalette
+            #if Terminal
+                _ = color.sgr
+                _ = color.sgr256
+                _ = color.sgrPalette
+            #endif
             #expect(color._debugRGBA.b.isFinite)
         }
     }

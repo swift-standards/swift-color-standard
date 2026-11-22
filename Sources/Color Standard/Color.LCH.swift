@@ -29,8 +29,8 @@ extension Color.LCH {
 extension Color.LCH {
 
     public init(_ lab: Color.LAB) {
-        let c = ISO_9899.Math.sqrt(lab.a * lab.a + lab.b * lab.b)
-        var h = ISO_9899.Math.atan2(lab.b, lab.a) * 180.0 / Double.pi
+        let c = ISO.`9899`.Math.sqrt(lab.a * lab.a + lab.b * lab.b)
+        var h = ISO.`9899`.Math.atan2(lab.b, lab.a) * 180.0 / Double.pi
         if h < 0 { h += 360 }
 
         self.init(l: lab.l, c: c, h: h)
@@ -38,8 +38,8 @@ extension Color.LCH {
 
     public var lab: Color.LAB {
         let hRad = h * Double.pi / 180.0
-        let a = c * ISO_9899.Math.cos(hRad)
-        let b = c * ISO_9899.Math.sin(hRad)
+        let a = c * ISO.`9899`.Math.cos(hRad)
+        let b = c * ISO.`9899`.Math.sin(hRad)
         return Color.LAB(l: l, a: a, b: b)
     }
 }

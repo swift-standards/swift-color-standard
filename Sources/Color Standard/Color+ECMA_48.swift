@@ -95,7 +95,7 @@
 
             func linearize(_ v: Double) -> Double {
                 guard v <= 0.04045 else {
-                    return ISO_9899.Math.pow((v + 0.055) / 1.055, 2.4)
+                    return ISO.`9899`.Math.pow((v + 0.055) / 1.055, 2.4)
                 }
                 return v / 12.92
             }

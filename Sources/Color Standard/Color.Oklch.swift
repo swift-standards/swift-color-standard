@@ -29,8 +29,8 @@ extension Color.Oklch {
 extension Color.Oklch {
 
     public init(_ oklab: Color.Oklab) {
-        let c = ISO_9899.Math.sqrt(oklab.a * oklab.a + oklab.b * oklab.b)
-        var h = ISO_9899.Math.atan2(oklab.b, oklab.a) * 180.0 / Double.pi
+        let c = ISO.`9899`.Math.sqrt(oklab.a * oklab.a + oklab.b * oklab.b)
+        var h = ISO.`9899`.Math.atan2(oklab.b, oklab.a) * 180.0 / Double.pi
         if h < 0 { h += 360 }
 
         self.init(l: oklab.l, c: c, h: h)
@@ -38,8 +38,8 @@ extension Color.Oklch {
 
     public var oklab: Color.Oklab {
         let hRad = h * Double.pi / 180.0
-        let a = c * ISO_9899.Math.cos(hRad)
-        let b = c * ISO_9899.Math.sin(hRad)
+        let a = c * ISO.`9899`.Math.cos(hRad)
+        let b = c * ISO.`9899`.Math.sin(hRad)
         return Color.Oklab(l: l, a: a, b: b)
     }
 }

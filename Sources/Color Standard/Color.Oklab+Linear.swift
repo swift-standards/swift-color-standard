@@ -17,9 +17,9 @@ extension Color.Oklab {
         let m = 0.2119034982 * red + 0.6806995451 * green + 0.1073969566 * blue
         let s = 0.0883024619 * red + 0.2817188376 * green + 0.6299787005 * blue
 
-        let l_ = Value(ISO_9899.Math.cbrt(Double(l)))
-        let m_ = Value(ISO_9899.Math.cbrt(Double(m)))
-        let s_ = Value(ISO_9899.Math.cbrt(Double(s)))
+        let l_ = Value(ISO.`9899`.Math.cbrt(Double(l)))
+        let m_ = Value(ISO.`9899`.Math.cbrt(Double(m)))
+        let s_ = Value(ISO.`9899`.Math.cbrt(Double(s)))
 
         return (
             l: 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_,

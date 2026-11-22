@@ -19,7 +19,7 @@ extension Color.Spectrum {
     /// `response(at:observer:)` and every colour's weights divided by their sum, so each colour's weights add up
     /// to 1 and a flat white is gathered back to white. A colour whose responses sum to 0 gets weight 0
     /// throughout. A count of zero, or one too large for an `Int`, gives no wavelengths.
-    public init(sampling range: ClosedRange<Double>, count: Cardinal, observer: ISO_11664.Observer) {
+    public init(sampling range: ClosedRange<Double>, count: Cardinal, observer: ISO.`11664`.Observer) {
         guard let count = Int(exactly: count), count > 0 else {
             self.init(wavelengths: [], weights: [])
             return
@@ -44,7 +44,7 @@ extension Color.Spectrum {
     /// 0 or more.
     public static func response(
         at nanometres: Double,
-        observer: ISO_11664.Observer
+        observer: ISO.`11664`.Observer
     ) -> (red: Double, green: Double, blue: Double) {
         let xyz = observer.matching(at: nanometres)
         let m = IEC_61966.`2`.`1`.SRGB.Matrix.forward

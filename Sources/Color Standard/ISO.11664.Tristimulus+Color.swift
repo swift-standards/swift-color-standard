@@ -1,6 +1,6 @@
 public import ISO_11664
 
-extension ISO_11664.Tristimulus: _ColorProtocol {
+extension ISO.`11664`.Tristimulus: _ColorProtocol {
 
     /// The colour these tristimulus values are, read relative to D65 with the white's Y at 1: the values `Color`
     /// itself holds, so nothing is converted.

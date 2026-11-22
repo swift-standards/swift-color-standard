@@ -21,7 +21,7 @@ extension `Color.Spectrum Tests`.Test {
         func response(_ wavelength: Double) -> (red: Double, green: Double, blue: Double) {
             func lobe(_ mean: Double, _ below: Double, _ above: Double) -> Double {
                 let t = (wavelength - mean) / (wavelength < mean ? below : above)
-                return ISO_9899.Math.exp(-0.5 * t * t)
+                return ISO.`9899`.Math.exp(-0.5 * t * t)
             }
             let x =
                 1.056 * lobe(599.8, 37.9, 31.0) + 0.362 * lobe(442.0, 16.0, 26.7) - 0.065 * lobe(501.1, 20.4, 26.2)
@@ -123,7 +123,7 @@ extension `Color.Spectrum Tests`.Test.Unit {
 
     @Test
     func `the response is the forward matrix applied to the observer, held at 0`() {
-        let xyz = ISO_11664.Observer.analytic.matching(at: 520)
+        let xyz = ISO.`11664`.Observer.analytic.matching(at: 520)
         let m = IEC_61966.`2`.`1`.SRGB.Matrix.forward
         let response = Color.Spectrum.response(at: 520, observer: .analytic)
         #expect(response.green == m[1][0] * xyz.x + m[1][1] * xyz.y + m[1][2] * xyz.z)

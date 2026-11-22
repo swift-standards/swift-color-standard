@@ -31,7 +31,7 @@ extension Color {
 
         let xr = fx3 > epsilon ? fx3 : (116.0 * fx - 16.0) / kappa
         let yr =
-            lab.l > kappa * epsilon ? ISO_9899.Math.pow((lab.l + 16.0) / 116.0, 3) : lab.l / kappa
+            lab.l > kappa * epsilon ? ISO.`9899`.Math.pow((lab.l + 16.0) / 116.0, 3) : lab.l / kappa
         let zr = fz3 > epsilon ? fz3 : (116.0 * fz - 16.0) / kappa
 
         let x = xr * xn
@@ -63,7 +63,7 @@ extension Color {
             guard t > epsilon else {
                 return (kappa * t + 16.0) / 116.0
             }
-            return ISO_9899.Math.cbrt(t)
+            return ISO.`9899`.Math.cbrt(t)
         }
 
         let fx = f(xr)

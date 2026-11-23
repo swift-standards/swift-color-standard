@@ -4,7 +4,7 @@
 
     extension Color {
 
-        public var sgr: ECMA_48.SGR.Color {
+        public var sgr: ECMA.`48`.SGR.Color {
             let rgba = _debugRGBA
             return .rgb(
                 r: UInt8(clamping: Int(rgba.r * 255)),
@@ -13,7 +13,7 @@
             )
         }
 
-        public func sgr(for capability: SGRCapability) -> ECMA_48.SGR.Color {
+        public func sgr(for capability: SGRCapability) -> ECMA.`48`.SGR.Color {
             switch capability {
             case .trueColor:
                 return sgr
@@ -26,7 +26,7 @@
             }
         }
 
-        public var sgr256: ECMA_48.SGR.Color {
+        public var sgr256: ECMA.`48`.SGR.Color {
             let rgba = _debugRGBA
             let r = rgba.r
             let g = rgba.g
@@ -47,7 +47,7 @@
             return .extended(index)
         }
 
-        public var sgrPalette: ECMA_48.SGR.Color {
+        public var sgrPalette: ECMA.`48`.SGR.Color {
             let rgba = _debugRGBA
             let r = rgba.r
             let g = rgba.g
@@ -72,7 +72,7 @@
 
     extension Color {
 
-        public init(_ sgr: ECMA_48.SGR.Color) {
+        public init(_ sgr: ECMA.`48`.SGR.Color) {
             switch sgr {
             case .palette(let p):
                 self = Self._fromPalette(p)
@@ -115,7 +115,7 @@
         private static func _from256(_ index: UInt8) -> Color {
             if index < 16 {
 
-                guard let palette = ECMA_48.SGR.Color.Palette(rawValue: Int(index)) else {
+                guard let palette = ECMA.`48`.SGR.Color.Palette(rawValue: Int(index)) else {
                     preconditionFailure("Indices below 16 always map to a palette color")
                 }
                 return _fromPalette(palette)
@@ -139,7 +139,7 @@
             }
         }
 
-        private static func _fromPalette(_ palette: ECMA_48.SGR.Color.Palette) -> Color {
+        private static func _fromPalette(_ palette: ECMA.`48`.SGR.Color.Palette) -> Color {
             let rgb: (UInt8, UInt8, UInt8) =
                 switch palette {
                 case .black: (0, 0, 0)
@@ -167,7 +167,7 @@
             g: Double,
             b: Double,
             bright: Bool
-        ) -> ECMA_48.SGR.Color.Palette {
+        ) -> ECMA.`48`.SGR.Color.Palette {
 
             let threshold = 0.3
 
@@ -189,7 +189,7 @@
                 }
             }
 
-            let palette: ECMA_48.SGR.Color.Palette
+            let palette: ECMA.`48`.SGR.Color.Palette
             switch (hasR, hasG, hasB) {
             case (true, false, false): palette = .red
             case (false, true, false): palette = .green
@@ -202,7 +202,7 @@
             }
 
             if bright {
-                return ECMA_48.SGR.Color.Palette(rawValue: palette.rawValue + 8) ?? palette
+                return ECMA.`48`.SGR.Color.Palette(rawValue: palette.rawValue + 8) ?? palette
             }
             return palette
         }

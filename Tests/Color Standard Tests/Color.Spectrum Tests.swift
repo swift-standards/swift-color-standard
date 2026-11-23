@@ -124,7 +124,7 @@ extension `Color.Spectrum Tests`.Test.Unit {
     @Test
     func `the response is the forward matrix applied to the observer, held at 0`() {
         let xyz = ISO.`11664`.Observer.analytic.matching(at: 520)
-        let m = IEC_61966.`2`.`1`.SRGB.Matrix.forward
+        let m = IEC.`61966`.`2`.`1`.SRGB.Matrix.forward
         let response = Color.Spectrum.response(at: 520, observer: .analytic)
         #expect(response.green == m[1][0] * xyz.x + m[1][1] * xyz.y + m[1][2] * xyz.z)
         #expect(response.red == Swift.max(m[0][0] * xyz.x + m[0][1] * xyz.y + m[0][2] * xyz.z, 0))

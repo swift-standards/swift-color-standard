@@ -31,7 +31,7 @@ extension `Color.Oklab Linear Tests`.Test.Unit {
     @Test
     func `Oklab of a colour is the coordinates of its linear sRGB, bit for bit`() {
         for (r, g, b) in Self.samples {
-            let color = IEC_61966.`2`.`1`.LinearSRGB(r: r, g: g, b: b).canonical()
+            let color = IEC.`61966`.`2`.`1`.LinearSRGB(r: r, g: g, b: b).canonical()
             let (lr, lg, lb) = Self.linear(color)
             let place = Color.Oklab.coordinates(red: lr, green: lg, blue: lb)
             #expect(Color.Oklab(color) == Color.Oklab(l: place.l, a: place.a, b: place.b))
@@ -40,7 +40,7 @@ extension `Color.Oklab Linear Tests`.Test.Unit {
 
     @Test
     func `encoded sRGB reaches the same Oklab as its linear components`() {
-        let encoded = IEC_61966.`2`.`1`.SRGB(r: 0.25, g: 0.5, b: 0.75)
+        let encoded = IEC.`61966`.`2`.`1`.SRGB(r: 0.25, g: 0.5, b: 0.75)
         let (lr, lg, lb) = Self.linear(encoded.canonical())
         let place = Color.Oklab.coordinates(red: lr, green: lg, blue: lb)
         #expect(encoded.converted(to: Color.Oklab.self) == Color.Oklab(l: place.l, a: place.a, b: place.b))
@@ -79,7 +79,7 @@ extension `Color.Oklab Linear Tests`.Test.Unit {
     func `the canonical colour of a place is its linear sRGB taken to XYZ`() {
         let oklab = Color.Oklab(l: 0.6, a: 0.1, b: -0.1)
         let linear = Color.Oklab.linear(l: oklab.l, a: oklab.a, b: oklab.b)
-        let expected = IEC_61966.`2`.`1`.LinearSRGB(r: linear.red, g: linear.green, b: linear.blue).canonical()
+        let expected = IEC.`61966`.`2`.`1`.LinearSRGB(r: linear.red, g: linear.green, b: linear.blue).canonical()
         #expect(oklab.canonical() == expected)
     }
 }

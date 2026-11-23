@@ -47,7 +47,7 @@ extension Color.Spectrum {
         observer: ISO.`11664`.Observer
     ) -> (red: Double, green: Double, blue: Double) {
         let xyz = observer.matching(at: nanometres)
-        let m = IEC_61966.`2`.`1`.SRGB.Matrix.forward
+        let m = IEC.`61966`.`2`.`1`.SRGB.Matrix.forward
         return (
             red: Swift.max(m[0][0] * xyz.x + m[0][1] * xyz.y + m[0][2] * xyz.z, 0),
             green: Swift.max(m[1][0] * xyz.x + m[1][1] * xyz.y + m[1][2] * xyz.z, 0),

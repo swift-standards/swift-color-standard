@@ -1,7 +1,7 @@
 public import IEC_61966
 import ISO_9899
 
-extension IEC_61966.`2`.`1`.SRGB: _ColorProtocol {
+extension IEC.`61966`.`2`.`1`.SRGB: _ColorProtocol {
 
     public func canonical() -> Color {
         Color._fromSRGB(self)
@@ -14,7 +14,7 @@ extension IEC_61966.`2`.`1`.SRGB: _ColorProtocol {
 
 extension Color {
 
-    internal static func _fromSRGB(_ srgb: IEC_61966.`2`.`1`.SRGB) -> Color {
+    internal static func _fromSRGB(_ srgb: IEC.`61966`.`2`.`1`.SRGB) -> Color {
 
         let linear = srgb.linear
 
@@ -30,7 +30,7 @@ extension Color {
         return Color(_xyz: _XYZ(x: x, y: y, z: z, illuminant: .d65), _alpha: 1.0)
     }
 
-    internal static func _toSRGB(_ color: Color) -> IEC_61966.`2`.`1`.SRGB {
+    internal static func _toSRGB(_ color: Color) -> IEC.`61966`.`2`.`1`.SRGB {
 
         let xyz =
             color._xyz.illuminant == .d65
@@ -42,13 +42,13 @@ extension Color {
         let lg = m.1.0 * xyz.x + m.1.1 * xyz.y + m.1.2 * xyz.z
         let lb = m.2.0 * xyz.x + m.2.1 * xyz.y + m.2.2 * xyz.z
 
-        let linear = IEC_61966.`2`.`1`.LinearSRGB(r: lr, g: lg, b: lb)
+        let linear = IEC.`61966`.`2`.`1`.LinearSRGB(r: lr, g: lg, b: lb)
 
         return linear.encoded
     }
 }
 
-extension IEC_61966.`2`.`1`.LinearSRGB: _ColorProtocol {
+extension IEC.`61966`.`2`.`1`.LinearSRGB: _ColorProtocol {
 
     public func canonical() -> Color {
         let m = Color._XYZ.sRGBToXYZ

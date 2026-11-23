@@ -31,8 +31,8 @@ extension `ISO.11664.Tristimulus Color Tests`.Test.Unit {
 
     @Test
     func `sRGB through tristimulus values is unchanged`() {
-        let srgb = IEC_61966.`2`.`1`.SRGB(r: 0.2, g: 0.6, b: 0.9)
+        let srgb = IEC.`61966`.`2`.`1`.SRGB(r: 0.2, g: 0.6, b: 0.9)
         let values = srgb.converted(to: ISO.`11664`.Tristimulus.self)
-        #expect(values.converted(to: IEC_61966.`2`.`1`.SRGB.self) == srgb.converted(to: IEC_61966.`2`.`1`.SRGB.self))
+        #expect(values.converted(to: IEC.`61966`.`2`.`1`.SRGB.self) == srgb.converted(to: IEC.`61966`.`2`.`1`.SRGB.self))
     }
 }

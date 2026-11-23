@@ -7,7 +7,7 @@ extension Color {
     /// each weight rounded to `Value`. Components are taken as they are, unclamped.
     @inlinable
     public static func luminance<Value: BinaryFloatingPoint>(red: Value, green: Value, blue: Value) -> Value {
-        let weights = IEC_61966.`2`.`1`.SRGB.Matrix.reverse[1]
+        let weights = IEC.`61966`.`2`.`1`.SRGB.Matrix.reverse[1]
         return Value(weights[0]) * red + Value(weights[1]) * green + Value(weights[2]) * blue
     }
 }

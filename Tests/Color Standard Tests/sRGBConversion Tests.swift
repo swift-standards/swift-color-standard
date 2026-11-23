@@ -2,12 +2,12 @@ import Testing
 
 @testable import Color_Standard
 
-enum `IEC_61966.2.1.SRGB Tests` {}
+enum `IEC.61966.2.1.SRGB Tests` {}
 
-extension `IEC_61966.2.1.SRGB Tests` {
+extension `IEC.61966.2.1.SRGB Tests` {
     @Suite
     struct Test {
-        typealias sRGB = IEC_61966.`2`.`1`.SRGB
+        typealias sRGB = IEC.`61966`.`2`.`1`.SRGB
 
         @Test
         func `Black round-trip`() {

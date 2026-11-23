@@ -29,7 +29,7 @@ extension `Color Luminance Tests`.Test.Unit {
 
     @Test
     func `luminance is the Y of the printed reverse matrix`() {
-        let m = IEC_61966.`2`.`1`.SRGB.Matrix.reverse
+        let m = IEC.`61966`.`2`.`1`.SRGB.Matrix.reverse
         let (r, g, b) = (0.25, 0.5, 0.125)
         #expect(Color.luminance(red: r, green: g, blue: b) == m[1][0] * r + m[1][1] * g + m[1][2] * b)
     }

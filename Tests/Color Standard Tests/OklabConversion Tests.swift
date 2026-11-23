@@ -9,7 +9,7 @@ extension `Color.Oklab Tests` {
     struct Test {
         typealias Oklab = Color.Oklab
         typealias Oklch = Color.Oklch
-        typealias sRGB = IEC_61966.`2`.`1`.SRGB
+        typealias sRGB = IEC.`61966`.`2`.`1`.SRGB
 
         @Test
         func `Oklab black round-trip`() {
